@@ -8,7 +8,6 @@ public class PanelListeEvts extends JPanel{
 	public PanelListeEvts()
 	{
 		JTable friseTable = new JTable();
-		
 	}
 	
 }

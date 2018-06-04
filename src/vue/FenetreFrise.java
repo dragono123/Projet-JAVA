@@ -12,11 +12,11 @@ public class FenetreFrise extends JFrame {
 		PanelFrise contentPane = new PanelFrise();
 		setContentPane(contentPane);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(800,600);
+		setSize(1200,550);
 		setVisible(true);
 		setLocation(200,300);
 	}
-	public Insets getInsets()
+	public Insets setInsets()
 	{
 		return new Insets(8, 4, 4, 4);
 	}
