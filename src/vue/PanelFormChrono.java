@@ -49,14 +49,22 @@ public class PanelFormChrono extends JPanel{
 			add(label[i], contrainte);
 			contrainte.gridx = 3;
 			contrainte.gridwidth = 8;
+			label[i].setDisplayedMnemonic(Data.titreElementsChrono[i].charAt(0));
 			if(Data.titreElementsChrono[i].equals("Intitulé"))
+			{
 				add(new JScrollPane(chIntitule, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
-			else if(Data.titreElementsChrono[i].equals("Nom de l'image"))
+				label[i].setLabelFor(chIntitule);
+			}
+			else if(Data.titreElementsChrono[i].equals("Nom de l'emplacement image"))
+			{
 				add(new JScrollPane(chDossier, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
-			else if(Data.titreElementsChrono[i].equals("Période"))
+				label[i].setLabelFor(chDossier);
+			}
+			else if(Data.titreElementsChrono[i].equals("Ère concernée"))
 			{
 				contrainte.gridwidth = 2;
 				add(new JScrollPane(chAnDebut, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
+				label[i].setLabelFor(chAnDebut);
 				contrainte.gridwidth = 1;
 				contrainte.gridx += 2;
 				JLabel labelTire = new JLabel("-");

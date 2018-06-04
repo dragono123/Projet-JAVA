@@ -20,15 +20,15 @@ public class PanelListeEvts extends JPanel{
 
 		for(int i = 0; i < modele.getColumnCount(); i++)
 		{
-			friseTable.getColumnModel().getColumn(i).setPreferredWidth(50);
+			friseTable.getColumnModel().getColumn(i).setPreferredWidth(60);
 			friseTable.getColumnModel().getColumn(i).setCellRenderer(new RendererIcon());
 		}
 		add(new JScrollPane(friseTable, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED));
-		friseTable.setRowHeight(50);
+		friseTable.setRowHeight(60);
 
 		friseTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		setPreferredSize(new Dimension(1100, 250));
-		friseTable.setPreferredScrollableViewportSize(new Dimension(1100, 250));
+		friseTable.setPreferredScrollableViewportSize(new Dimension(1100, 240));
 
 	}
 }

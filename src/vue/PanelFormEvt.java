@@ -21,7 +21,7 @@ public class PanelFormEvt extends JPanel{
 	private JTextArea chDescription = new JTextArea(8, 18);
 	private JTextArea chTitre = new JTextArea();
 	private JTextArea chChronologie = new JTextArea();
-	private JComboBox chPoids;
+	private JComboBox<Integer> chPoids;
 	private JButton chAjout;
 	public PanelFormEvt()
 	{
@@ -30,7 +30,7 @@ public class PanelFormEvt extends JPanel{
 		GridBagConstraints contrainte = new GridBagConstraints();
 		JLabel[] dateSlash = new JLabel[2];
 		JLabel[] label = new JLabel[Data.titreElementsEvt.length];
-		chPoids = new JComboBox(Data.poids);
+		chPoids = new JComboBox<Integer>(Data.poids);
 		
 		add(titrePanel, contrainte);
 		contrainte.gridx = 0;
@@ -53,20 +53,17 @@ public class PanelFormEvt extends JPanel{
 			add(label[i], contrainte);
 			contrainte.gridx = 3;
 			contrainte.gridwidth = 8;
+			label[i].setDisplayedMnemonic(Data.titreElementsEvt[i].charAt(0));
+			
 			if(Data.titreElementsEvt[i].equals("Description"))
 			{
 				contrainte.gridheight = 3;
 				add(new JScrollPane(chDescription, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
+				label[i].setLabelFor(chDescription);
 				contrainte.gridy += 2;
 				contrainte.gridheight = 1;
 			}
-			else if(Data.titreElementsEvt[i].equals("Titre"))
-				add(new JScrollPane(chTitre, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
-			else if(Data.titreElementsEvt[i].equals("Nom de l'image"))
-				add(new JScrollPane(chAdresse, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
-			else if(Data.titreElementsEvt[i].equals("Poids"))
-				add(new JScrollPane(chPoids, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
-			else if(Data.titreElementsEvt[i].equals("Date"))
+			else if(Data.titreElementsEvt[i].equals("Jour\\Mois\\An"))
 			{
 				contrainte.gridwidth = 1;
 				for(int j = 0; j < 3; j++)
@@ -85,9 +82,27 @@ public class PanelFormEvt extends JPanel{
 						contrainte.gridx++;
 					}
 				}
+
+				label[i].setLabelFor(chDate[0]);
+			}
+			else if(Data.titreElementsEvt[i].equals("Poids"))
+			{
+				add(new JScrollPane(chPoids, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
+				label[i].setLabelFor(chPoids);
 			}
 			else
-				add(new JScrollPane(chChronologie, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
+			{
+				JTextArea textArea;
+				if(Data.titreElementsEvt[i].equals("Titre"))
+					textArea = chTitre;
+				else if(Data.titreElementsEvt[i].equals("Adresse de l'image"))
+					textArea = chAdresse;
+				else
+					textArea = chChronologie;
+				
+				add(new JScrollPane(textArea, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
+				label[i].setLabelFor(textArea);
+			}
 			contrainte.gridx = 0;
 		}
 		

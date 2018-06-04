@@ -18,10 +18,18 @@ public class RendererIcon extends DefaultTableCellRenderer{
 	      boolean hasFocus, int row, int column) {
 		  //Permet de resize l'image pour éviter d'obtenir des images trop grandes ou trop petites tout en conservant le ratio
 		  ImageIcon imageOrigIcon = new ImageIcon("images" + File.separator + "imageTest" + ".jpg");
-		  Image imageOrig = imageOrigIcon.getImage().getScaledInstance(
-				50,
-				imageOrigIcon.getIconHeight()*50/imageOrigIcon.getIconWidth(), 
-				Image.SCALE_SMOOTH);
+		  Image imageOrig;
+		  if(imageOrigIcon.getIconHeight() > imageOrigIcon.getIconWidth())
+			  imageOrig = imageOrigIcon.getImage().getScaledInstance(
+					  60,
+					  imageOrigIcon.getIconHeight()*60/imageOrigIcon.getIconWidth(), 
+					  Image.SCALE_SMOOTH);
+		  else
+			  imageOrig = imageOrigIcon.getImage().getScaledInstance(
+					  imageOrigIcon.getIconWidth()*60/imageOrigIcon.getIconHeight(), 
+					  60,
+					  Image.SCALE_SMOOTH);
+		  
 		  //Création de l'image
 		  JLabel image = new JLabel(new ImageIcon(imageOrig), JLabel.CENTER);
 		  return image;
