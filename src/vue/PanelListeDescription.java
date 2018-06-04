@@ -5,7 +5,6 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PanelListeDescription extends JPanel{

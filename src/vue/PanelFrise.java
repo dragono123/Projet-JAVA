@@ -3,6 +3,7 @@ package vue;
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 public class PanelFrise extends JPanel
 {
@@ -12,9 +13,8 @@ public class PanelFrise extends JPanel
 		PanelEvt panelEvt = new PanelEvt();
 		PanelListeEvts panelEvts = new PanelListeEvts();
 		
-		
 		add(panelEvt, BorderLayout.NORTH);
-		add(panelEvts, BorderLayout.SOUTH);
+		add(panelEvts, BorderLayout.CENTER);
 	}
 	
 	

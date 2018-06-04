@@ -5,9 +5,8 @@ import javax.swing.table.DefaultTableModel;
 public class ModeleTable extends DefaultTableModel{
 	public ModeleTable()
 	{
-		int nbColumn = 18;
+		int nbColumn = 40;
 		setColumnCount(nbColumn);
-		for(int i = 0; i < nbColumn; i++)
-			
+		setRowCount(5);
 	}
 }
