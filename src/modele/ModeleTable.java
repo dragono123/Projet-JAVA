@@ -7,6 +7,6 @@ public class ModeleTable extends DefaultTableModel{
 	{
 		int nbColumn = 40;
 		setColumnCount(nbColumn);
-		setRowCount(5);
+		setRowCount(4);
 	}
 }
