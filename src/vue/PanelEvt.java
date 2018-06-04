@@ -21,6 +21,5 @@ public class PanelEvt extends JPanel {
 		
 		add(titreEvt, BorderLayout.NORTH);
 		add(panelListeDesc, BorderLayout.SOUTH);
-		
 	}
 }
