@@ -9,12 +9,12 @@ public class PanelFrise extends JPanel
 	public PanelFrise()
 	{
 		setLayout(new BorderLayout(10, 5));
-		PanelDescription panelDesc = new PanelDescription();
-		PanelEvts panelEvts = new PanelEvts();
+		PanelEvt panelEvt = new PanelEvt();
+		//PanelListeEvts panelEvts = new PanelListeEvts();
 		
 		
-		setLayout(panelDesc, BorderLayout.NORTH);
-		setLayout(panelEvts, BorderLayout.SOUTH);
+		add(panelEvt, BorderLayout.NORTH);
+		//add(panelEvts, BorderLayout.SOUTH);
 	}
 	
 	
