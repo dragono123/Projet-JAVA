@@ -8,7 +8,9 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 import data.Data;
 
@@ -48,21 +50,20 @@ public class PanelFormChrono extends JPanel{
 			contrainte.gridx = 3;
 			contrainte.gridwidth = 8;
 			if(Data.titreElementsChrono[i].equals("Intitulé"))
-				add(chIntitule, contrainte);
+				add(new JScrollPane(chIntitule, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 			else if(Data.titreElementsChrono[i].equals("Nom de l'image"))
-				add(chDossier, contrainte);
+				add(new JScrollPane(chDossier, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 			else if(Data.titreElementsChrono[i].equals("Période"))
 			{
 				contrainte.gridwidth = 2;
-				add(chAnDebut, contrainte);
-				add(chAnDebut, contrainte);
+				add(new JScrollPane(chAnDebut, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 				contrainte.gridwidth = 1;
 				contrainte.gridx += 2;
 				JLabel labelTire = new JLabel("-");
 				add(labelTire, contrainte);
 				contrainte.gridx++;
 				contrainte.gridwidth = 2;
-				add(chAnFin, contrainte);
+				add(new JScrollPane(chAnFin, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 				contrainte.gridwidth = 8;
 			}
 			contrainte.gridx = 0;

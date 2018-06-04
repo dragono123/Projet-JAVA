@@ -9,7 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 import data.Data;
 
@@ -54,16 +56,16 @@ public class PanelFormEvt extends JPanel{
 			if(Data.titreElementsEvt[i].equals("Description"))
 			{
 				contrainte.gridheight = 3;
-				add(chDescription, contrainte);
+				add(new JScrollPane(chDescription, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 				contrainte.gridy += 2;
 				contrainte.gridheight = 1;
 			}
 			else if(Data.titreElementsEvt[i].equals("Titre"))
-				add(chTitre, contrainte);
+				add(new JScrollPane(chTitre, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 			else if(Data.titreElementsEvt[i].equals("Nom de l'image"))
-				add(chAdresse, contrainte);
+				add(new JScrollPane(chAdresse, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 			else if(Data.titreElementsEvt[i].equals("Poids"))
-				add(chPoids, contrainte);
+				add(new JScrollPane(chPoids, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 			else if(Data.titreElementsEvt[i].equals("Date"))
 			{
 				contrainte.gridwidth = 1;
@@ -73,8 +75,8 @@ public class PanelFormEvt extends JPanel{
 						chDate[j] = new JTextArea(1, 4);
 					else
 						chDate[j] = new JTextArea(1, 2);
-					
-					add(chDate[j], contrainte);
+
+					add(new JScrollPane(chDate[j], ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 					contrainte.gridx++;
 					if(j != 2)
 					{
@@ -85,7 +87,7 @@ public class PanelFormEvt extends JPanel{
 				}
 			}
 			else
-				add(chChronologie, contrainte);
+				add(new JScrollPane(chChronologie, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 			contrainte.gridx = 0;
 		}
 		
