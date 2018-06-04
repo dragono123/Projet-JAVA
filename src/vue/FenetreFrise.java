@@ -31,7 +31,7 @@ public class FenetreFrise extends JFrame {
 		menuBar.add(items[Data.items.length - 1]);
 		
 		
-		PanelFrise contentPane = new PanelFrise();
+		PanelFormulaire contentPane = new PanelFormulaire();
 		setContentPane(contentPane);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(1200,550);
