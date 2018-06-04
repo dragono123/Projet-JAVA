@@ -3,7 +3,6 @@ package vue;
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 public class PanelAffichage extends JPanel
 {
