@@ -55,7 +55,7 @@ public class PanelFormChrono extends JPanel{
 				add(new JScrollPane(chIntitule, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 				label[i].setLabelFor(chIntitule);
 			}
-			else if(Data.titreElementsChrono[i].equals("Nom de l'emplacement image"))
+			else if(Data.titreElementsChrono[i].equals("Emplacement images"))
 			{
 				add(new JScrollPane(chDossier, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 				label[i].setLabelFor(chDossier);

@@ -82,7 +82,7 @@ public class PanelFormEvt extends JPanel{
 						contrainte.gridx++;
 					}
 				}
-
+				
 				label[i].setLabelFor(chDate[0]);
 			}
 			else if(Data.titreElementsEvt[i].equals("Poids"))
@@ -95,7 +95,7 @@ public class PanelFormEvt extends JPanel{
 				JTextArea textArea;
 				if(Data.titreElementsEvt[i].equals("Titre"))
 					textArea = chTitre;
-				else if(Data.titreElementsEvt[i].equals("Adresse de l'image"))
+				else if(Data.titreElementsEvt[i].equals("Nom de l'image"))
 					textArea = chAdresse;
 				else
 					textArea = chChronologie;
