@@ -12,13 +12,13 @@ import data.Data;
 
 public class FenetreFrise extends JFrame {
 
-	private JMenuItem[] items = new JMenuItem[Data.items.length];
 	public FenetreFrise()
 	{
 		super("Frise chronologique");
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
+		JMenuItem[] items = new JMenuItem[Data.items.length];
 		
 		for(int i = 0; i < Data.items.length - 1; i++)
 		{
@@ -31,12 +31,14 @@ public class FenetreFrise extends JFrame {
 		menuBar.add(items[Data.items.length - 1]);
 		
 		
-		PanelFormulaire contentPane = new PanelFormulaire();
+		PanelFrise contentPane = new PanelFrise(items);
+		
 		setContentPane(contentPane);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(1200,550);
 		setVisible(true);
 		setLocation(200,300);
+		
 	}
 	public static void main(String args[])
 	{

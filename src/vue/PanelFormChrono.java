@@ -13,9 +13,9 @@ import javax.swing.JTextArea;
 import data.Data;
 
 public class PanelFormChrono extends JPanel{
-	private JTextArea chIntitule = new JTextArea();
-	private JTextArea chAnDebut = new JTextArea();
-	private JTextArea chAnFin = new JTextArea();
+	private JTextArea chIntitule = new JTextArea(1, 18);
+	private JTextArea chAnDebut = new JTextArea(1, 4);
+	private JTextArea chAnFin = new JTextArea(1, 4);
 	private JTextArea chDossier = new JTextArea();
 	private JButton chAjout = new JButton();
 	public PanelFormChrono()
@@ -42,16 +42,29 @@ public class PanelFormChrono extends JPanel{
 		for(int i = 0; i < Data.titreElementsChrono.length; i++)
 		{
 			contrainte.gridy++;
-			contrainte.gridwidth = 3;
+			contrainte.gridwidth = 2;
 			label[i] = new JLabel(Data.titreElementsChrono[i]);
 			add(label[i], contrainte);
 			contrainte.gridx = 3;
 			contrainte.gridwidth = 8;
-			if(Data.titreElementsChrono.equals("Intitulé"))
+			if(Data.titreElementsChrono[i].equals("Intitulé"))
 				add(chIntitule, contrainte);
-			else if(Data.titreElementsChrono.equals("Nom de l'image"))
+			else if(Data.titreElementsChrono[i].equals("Nom de l'image"))
 				add(chDossier, contrainte);
-			
+			else if(Data.titreElementsChrono[i].equals("Période"))
+			{
+				contrainte.gridwidth = 2;
+				add(chAnDebut, contrainte);
+				add(chAnDebut, contrainte);
+				contrainte.gridwidth = 1;
+				contrainte.gridx += 2;
+				JLabel labelTire = new JLabel("-");
+				add(labelTire, contrainte);
+				contrainte.gridx++;
+				contrainte.gridwidth = 2;
+				add(chAnFin, contrainte);
+				contrainte.gridwidth = 8;
+			}
 			contrainte.gridx = 0;
 		}
 

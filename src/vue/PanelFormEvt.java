@@ -1,6 +1,5 @@
 package vue;
 
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -70,7 +69,11 @@ public class PanelFormEvt extends JPanel{
 				contrainte.gridwidth = 1;
 				for(int j = 0; j < 3; j++)
 				{
-					chDate[j] = new JTextArea(1, 4);
+					if(j == 2)
+						chDate[j] = new JTextArea(1, 4);
+					else
+						chDate[j] = new JTextArea(1, 2);
+					
 					add(chDate[j], contrainte);
 					contrainte.gridx++;
 					if(j != 2)
