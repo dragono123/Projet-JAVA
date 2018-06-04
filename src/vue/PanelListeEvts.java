@@ -16,5 +16,4 @@ public class PanelListeEvts extends JPanel{
 		ModeleTable modele = new ModeleTable();
 		add(new JScrollPane(friseTable, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED));
 	}
-	
 }
