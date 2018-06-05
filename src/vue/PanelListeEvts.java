@@ -16,7 +16,7 @@ import modele.ModeleTable;
 
 
 public class PanelListeEvts extends JPanel{
-	Chronologie chChronologie;
+	private Chronologie chChronologie;
 	private ModeleTable modele;
 	private JTable friseTable;
 	private PanelAffichage chAffichage;
@@ -30,7 +30,6 @@ public class PanelListeEvts extends JPanel{
 		ajoutCellRenderer();
 		add(new JScrollPane(friseTable, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED));
 		friseTable.setRowHeight(60);
-
 		friseTable.addMouseListener(new MouseAdapter(){
 			  public void mousePressed(MouseEvent e)
 			    {
@@ -48,6 +47,12 @@ public class PanelListeEvts extends JPanel{
 		friseTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		setPreferredSize(new Dimension(1100, 250));
 		friseTable.setPreferredScrollableViewportSize(new Dimension(1100, 240));
+	}
+	public void updateChronologie(Chronologie parChronologie)
+	{
+		chChronologie = parChronologie;
+		modele.updateChronologie(chChronologie);
+		ajoutCellRenderer();
 	}
 	public void resetModele()
 	{

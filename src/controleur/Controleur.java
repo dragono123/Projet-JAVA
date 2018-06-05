@@ -16,6 +16,7 @@ import modele.Historique;
 import data.Data;
 import data.LectureEcriture;
 import vue.PanelAffichage;
+import vue.PanelEvt;
 import vue.PanelFormChrono;
 import vue.PanelFormEvt;
 import vue.PanelFormulaire;
@@ -23,11 +24,12 @@ import vue.PanelListeDescription;
 import vue.PanelListeEvts;
 
 public class Controleur implements ActionListener{
-	PanelFormChrono chFormChrono;
-	PanelFormEvt chFormEvt;
-	PanelListeEvts chListeEvts;
-	Historique chHistorique;
-	PanelListeDescription chPanelDescription;
+	private PanelFormChrono chFormChrono;
+	private PanelFormEvt chFormEvt;
+	private PanelListeEvts chListeEvts;
+	private Historique chHistorique;
+	private PanelListeDescription chPanelDescription;
+	private PanelEvt chPanelEvt;
 	public Controleur(PanelFormulaire parFormulaire, PanelAffichage parAffiche, Historique parHistorique)
 	{
 		chFormChrono = parFormulaire.getPanelChrono();
@@ -38,6 +40,7 @@ public class Controleur implements ActionListener{
 		chListeEvts = parAffiche.getListeEvts();
 		chPanelDescription = parAffiche.getPanelEvt().getPanelListeDesc();
 		chPanelDescription.enregistreEcouteur(this);
+		chPanelEvt = parAffiche.getPanelEvt();
 	}
 	
 	public void actionPerformed(ActionEvent parEvt) 
@@ -60,6 +63,7 @@ public class Controleur implements ActionListener{
 				}
 				LectureEcriture.ecriture(fichier, chrono);
 				chListeEvts.resetModele();
+				chPanelEvt.updateChronologie(chrono);
 			}
 		}
 		if(parEvt.getActionCommand().equals(Data.commandAjoutEvt))

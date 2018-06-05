@@ -34,17 +34,24 @@ public class PanelListeDescription extends JPanel{
 		chChronologie = parChronologie;
 		panelDesc = new PanelDescription();
 		if(chChronologie != null)
-		{
-			TreeMap<Integer, TreeMap<Integer, Evt>> listeMap = chChronologie.getEvtListe();
-			if(!listeMap.isEmpty())
-				updateActu(listeMap.firstEntry().getValue().firstEntry().getValue());
-		}
+			updatePremier();
 		
 		add(panelDesc, BorderLayout.CENTER);
 		add(boutonArriere, BorderLayout.WEST);
 		add(boutonSuivant, BorderLayout.EAST);
 	}
-	
+	public void updateChronologie(Chronologie parChronologie)
+	{
+		chChronologie = parChronologie;
+		if(chChronologie != null)
+			updatePremier();
+	}
+	public void updatePremier()
+	{
+		TreeMap<Integer, TreeMap<Integer, Evt>> listeMap = chChronologie.getEvtListe();
+		if(!listeMap.isEmpty())
+			updateActu(listeMap.firstEntry().getValue().firstEntry().getValue());
+	}
 	public void updateActu(Evt parEvt)
 	{
 		evtCourant = parEvt;

@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
+import data.Data;
 import modele.Date;
 
 public class PanelDescription extends JPanel{
@@ -45,7 +46,7 @@ public class PanelDescription extends JPanel{
 	public void updatePanel(String parNomImage, String parDossier, String nom, Date date, String parDescription)
 	{
 
-		imageOrigIcon = new ImageIcon(parDossier + File.separator + parNomImage);
+		imageOrigIcon = new ImageIcon(Data.imageRepository + File.separator + parDossier + File.separator + parNomImage);
 		Image imageOrig = imageOrigIcon.getImage().getScaledInstance(
 				imageOrigIcon.getIconWidth()*150/imageOrigIcon.getIconHeight(), 
 				150,

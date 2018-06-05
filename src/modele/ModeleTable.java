@@ -9,8 +9,7 @@ public class ModeleTable extends DefaultTableModel{
 	Chronologie chChronologie;
 	public ModeleTable(Chronologie parChronologie)
 	{
-		chChronologie = parChronologie;
-		afficherFrise();
+		updateChronologie(parChronologie);
 	}
 	public void afficherFrise()
 	{
@@ -57,6 +56,11 @@ public class ModeleTable extends DefaultTableModel{
 			}
 			setColumnIdentifiers(entete);
 		}
+	}
+	public void updateChronologie(Chronologie parChronologie)
+	{
+		chChronologie = parChronologie;
+		afficherFrise();
 	}
 	@Override
 	public boolean isCellEditable(int row, int column)

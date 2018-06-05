@@ -3,6 +3,7 @@ package modele;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class Historique {
@@ -18,6 +19,15 @@ public class Historique {
 	public Chronologie getChronologie(String key)
 	{
 		return mapChronologie.get(key);
+	}
+	public String[] listeNomChrono()
+	{
+		String[] liste = new String[mapChronologie.size()];
+		Set<String> keys = mapChronologie.keySet();
+		int indice = 0;
+		for(String key : keys)
+			liste[indice++] = key;
+		return liste;
 	}
 	public boolean contientCle(String key)
 	{

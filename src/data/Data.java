@@ -10,4 +10,5 @@ public class Data {
 	public static String commandDiapoGauche = "Gauche";
 	public static String commandDiapoDroite = "Droite";
 	public static String saveFile = "saves";
+	public static String imageRepository = "images";
 }

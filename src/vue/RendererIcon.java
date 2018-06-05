@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import data.Data;
 import modele.Chronologie;
 import modele.Evt;
 
@@ -28,11 +29,11 @@ public class RendererIcon extends DefaultTableCellRenderer{
 		  JLabel returnLabel = this;
 		  if(value != null)
 		  {
-			  File imageFile = new File(chDossier + File.separator + ((Evt) value).getFichier());
+			  File imageFile = new File(Data.imageRepository + File.separator +chDossier + File.separator + ((Evt) value).getFichier());
 			  if(imageFile.exists())
 			  {
 				  //Permet de resize l'image pour éviter d'obtenir des images trop grandes ou trop petites tout en conservant le ratio
-				  ImageIcon imageOrigIcon = new ImageIcon(chDossier + File.separator + ((Evt) value).getFichier());
+				  ImageIcon imageOrigIcon = new ImageIcon(Data.imageRepository + File.separator + chDossier + File.separator + ((Evt) value).getFichier());
 				  Image imageOrig;
 				  if(imageOrigIcon.getIconHeight() > imageOrigIcon.getIconWidth())
 					  imageOrig = imageOrigIcon.getImage().getScaledInstance(

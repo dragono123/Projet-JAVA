@@ -20,13 +20,13 @@ public class PanelAffichage extends JPanel
 		if(historique.estVide())
 		{
 			panelEvts = new PanelListeEvts(null, this);
-			panelEvt = new PanelEvt(null);
+			panelEvt = new PanelEvt(null, historique, panelEvts);
 		}
 		else
 		{
 			chChronoCourante = historique.getRandomChronologie();
 			panelEvts = new PanelListeEvts(chChronoCourante, this);
-			panelEvt = new PanelEvt(chChronoCourante);
+			panelEvt = new PanelEvt(chChronoCourante, historique, panelEvts);
 		}
 		add(panelEvt, BorderLayout.NORTH);
 		add(panelEvts, BorderLayout.CENTER);
