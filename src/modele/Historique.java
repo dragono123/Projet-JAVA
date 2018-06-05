@@ -16,4 +16,8 @@ public class Historique {
 	{
 		return mapChronologie.get(key);
 	}
+	public boolean contientCle(String key)
+	{
+		return mapChronologie.containsKey(key);
+	}
 }

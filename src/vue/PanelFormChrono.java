@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
+import controleur.Controleur;
+
 import data.Data;
 
 public class PanelFormChrono extends JPanel{
@@ -82,5 +84,26 @@ public class PanelFormChrono extends JPanel{
 		contrainte.gridwidth = 2;
 		contrainte.gridy++;
 		add(chAjout, contrainte);
+	}
+	public void enregistreEcouteur(Controleur parControleur)
+	{
+		chAjout.addActionListener(parControleur);
+		chAjout.setActionCommand(Data.commandAjoutChrono);
+	}
+	public String getIntitule()
+	{
+		return chIntitule.getText();
+	}
+	public String getDossier()
+	{
+		return chDossier.getText();
+	}
+	public Integer getAnDebut()
+	{
+		return Integer.parseInt(chAnDebut.getText());
+	}
+	public Integer getAnFin()
+	{
+		return Integer.parseInt(chAnFin.getText());
 	}
 }

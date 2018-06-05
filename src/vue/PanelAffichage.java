@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
+import controleur.Controleur;
+
 public class PanelAffichage extends JPanel
 {
 	public PanelAffichage()
@@ -15,6 +17,5 @@ public class PanelAffichage extends JPanel
 		add(panelEvt, BorderLayout.NORTH);
 		add(panelEvts, BorderLayout.CENTER);
 	}
-	
 	
 }

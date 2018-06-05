@@ -40,8 +40,8 @@ public class FenetreFrise extends JFrame {
 		setLocation(200,300);
 		
 	}
-	/*public static void main(String args[])
+	public static void main(String args[])
 	{
 		new FenetreFrise();
-	}*/
+	}
 }

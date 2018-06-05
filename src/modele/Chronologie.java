@@ -11,12 +11,14 @@ public class Chronologie {
 	private int chAnDebut;
 	private int chAnFin;
 	private String chNom;
-	public Chronologie(int parAnDebut, int parAnFin, String parNom)
+	private String chDossier;
+	public Chronologie(int parAnDebut, int parAnFin, String parNom, String parDossier)
 	{
 		chTreeMap = new TreeMap<Integer, TreeMap<Integer, Evt>>();
 		chAnDebut = parAnDebut;
 		chAnFin = parAnFin;
 		chNom = parNom;
+		chDossier = parDossier;
 	}
 	
 	public void ajout(Evt parEvt) throws ExceptionChronologie
@@ -59,6 +61,10 @@ public class Chronologie {
 	public int getAnFin()
 	{
 		return chAnFin;
+	}
+	public String getDossier()
+	{
+		return chDossier;
 	}
 	public boolean containsKey(Integer key)
 	{

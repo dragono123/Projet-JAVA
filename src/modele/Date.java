@@ -10,9 +10,6 @@ public class Date implements Comparable<Date>, Serializable
 	private int chMois;
 	private int chAn;
 	private int chJourSemaine;
-	private boolean chHeureActive = false;
-	private int chHeure = 0;
-	private int chMinute = 0;
 
     /**
     * 
@@ -35,29 +32,6 @@ public class Date implements Comparable<Date>, Serializable
 		this.chAn = parAn;
 		this.chJourSemaine = nouveau.get(Calendar.DAY_OF_WEEK);
 	}
-	public Date(int parJour, int parMois, int parAn, int parHeure, int parMinute) throws ExceptionDate
-	{
-		if(parAn < 1583)
-			throw new ExceptionDate("Année invalide !");
-		if(parMois < 1 || parMois > 12)
-			throw new ExceptionDate("Mois invalide !");
-		if(parJour < 1 || parJour > dernierJour(parMois, parAn))
-			throw new ExceptionDate("Jour invalide !");
-		if(parHeure > 23 || parHeure < 0)
-			throw new ExceptionDate("Heure invalide !");
-		if(parMinute > 23 || parMinute < 0)
-			throw new ExceptionDate("Minute invalide !");
-		GregorianCalendar nouveau = new GregorianCalendar(parAn, parMois - 1, parJour);
-		
-		this.chJour = parJour;
-		this.chMois = parMois;
-		this.chAn = parAn;
-		this.chJourSemaine = nouveau.get(Calendar.DAY_OF_WEEK);
-		this.chMinute = parMinute;
-		this.chHeure = parHeure;
-		this.chHeureActive = true;
-		 
-	}
 	public Date()
 	{
 		GregorianCalendar aujourdhui = new GregorianCalendar();
@@ -66,23 +40,6 @@ public class Date implements Comparable<Date>, Serializable
         chMois = aujourdhui.get(Calendar.MONTH) + 1;
         chAn = aujourdhui.get(Calendar.YEAR);
         chJourSemaine = aujourdhui.get(Calendar.DAY_OF_WEEK);
-	}
-	public Date(int parHeure, int parMinute) throws ExceptionDate
-	{
-		if(parHeure > 23 || parHeure < 0)
-			throw new ExceptionDate("Heure invalide !");
-		if(parMinute > 23 || parMinute < 0)
-			throw new ExceptionDate("Minute invalide !");
-		
-		GregorianCalendar aujourdhui = new GregorianCalendar();
-		
-        chJour = aujourdhui.get(Calendar.DAY_OF_MONTH);
-        chMois = aujourdhui.get(Calendar.MONTH) + 1;
-        chAn = aujourdhui.get(Calendar.YEAR);
-        chJourSemaine = aujourdhui.get(Calendar.DAY_OF_WEEK);
-		chMinute = parMinute;
-		chHeure = parHeure;
-		chHeureActive = true;
 	}
     public Date(Date parDate)
     {
@@ -97,24 +54,8 @@ public class Date implements Comparable<Date>, Serializable
     			"octobre", "novembre", "décembre"};
     	String jour[] = {"", "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"};
     	
-    	String horaire = "";
     	
-    	if(chHeureActive)
-    	{
-    		String heure;
-    		String minute;
-    		if(chHeure < 10)
-    			heure = "0" + chHeure;
-    		else
-    			heure = Integer.toString(chHeure);
-    		if(chMinute < 10)
-    			minute = "0" + chMinute;
-    		else
-    			minute = Integer.toString(chMinute);
-    		horaire = " " + heure + ":" + minute;
-    	}
-    	
-        return jour[chJourSemaine] + " " + chJour + " " + mois[chMois] + " " + chAn + horaire;
+        return jour[chJourSemaine] + " " + chJour + " " + mois[chMois] + " " + chAn;
     }
     public int getNoSemaine()
     {
@@ -271,13 +212,9 @@ public class Date implements Comparable<Date>, Serializable
             valeur = -1;
         else if(parDate.chAn < this.chAn)
             valeur = 1;
-        else if((parDate.chMois > this.chMois) || ((parDate.chMois == this.chMois) && (this.chJour < parDate.chJour)) || 
-        		((parDate.chHeure > this.chHeure) && (parDate.chMois == this.chMois) && (this.chJour == parDate.chJour)) ||
-        		((parDate.chHeure == this.chHeure) && (parDate.chMois == this.chMois) && (this.chJour == parDate.chJour)) && (parDate.chMinute > this.chMinute))
+        else if((parDate.chMois > this.chMois) || ((parDate.chMois == this.chMois) && (this.chJour < parDate.chJour)))
             valeur = -1;
-        else if((parDate.chMois < this.chMois) || ((parDate.chMois == this.chMois) && (this.chJour > parDate.chJour)) || 
-        		((parDate.chHeure < this.chHeure) && (parDate.chMois == this.chMois) && (this.chJour == parDate.chJour)) ||
-        		((parDate.chHeure == this.chHeure) && (parDate.chMois == this.chMois) && (this.chJour == parDate.chJour)) && (parDate.chMinute < this.chMinute))
+        else if((parDate.chMois < this.chMois) || ((parDate.chMois == this.chMois) && (this.chJour > parDate.chJour)))
             valeur = 1;
         
         return valeur;

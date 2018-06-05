@@ -13,15 +13,20 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
+import modele.Date;
+import modele.ExceptionDate;
+
+import controleur.Controleur;
+
 import data.Data;
 
 public class PanelFormEvt extends JPanel{
 	private JTextArea[] chDate = new JTextArea[3];
-	private JTextArea chAdresse = new JTextArea();
+	private JTextArea chFichier = new JTextArea();
 	private JTextArea chDescription = new JTextArea(8, 18);
 	private JTextArea chTitre = new JTextArea();
 	private JTextArea chChronologie = new JTextArea();
-	private JComboBox<Integer> chPoids;
+	private JComboBox chPoids;
 	private JButton chAjout;
 	public PanelFormEvt()
 	{
@@ -30,7 +35,7 @@ public class PanelFormEvt extends JPanel{
 		GridBagConstraints contrainte = new GridBagConstraints();
 		JLabel[] dateSlash = new JLabel[2];
 		JLabel[] label = new JLabel[Data.titreElementsEvt.length];
-		chPoids = new JComboBox<Integer>(Data.poids);
+		chPoids = new JComboBox(Data.poids);
 		
 		add(titrePanel, contrainte);
 		contrainte.gridx = 0;
@@ -96,7 +101,7 @@ public class PanelFormEvt extends JPanel{
 				if(Data.titreElementsEvt[i].equals("Titre"))
 					textArea = chTitre;
 				else if(Data.titreElementsEvt[i].equals("Nom de l'image"))
-					textArea = chAdresse;
+					textArea = chFichier;
 				else
 					textArea = chChronologie;
 				
@@ -111,5 +116,37 @@ public class PanelFormEvt extends JPanel{
 		contrainte.gridwidth = 2;
 		contrainte.gridy++;
 		add(chAjout, contrainte);
+	}
+	public void enregistreEcouteur(Controleur parControleur)
+	{
+		chAjout.addActionListener(parControleur);
+		chAjout.setActionCommand(Data.commandAjoutEvt);
+	}
+	public String getFichier()
+	{
+		return chFichier.getText();
+	}
+	public String getDescription()
+	{
+		return chDescription.getText();
+	}
+	public Integer getPoids()
+	{
+		return (Integer) chPoids.getSelectedItem();
+	}
+	public String getTitre()
+	{
+		return chTitre.getText();
+	}
+	public Date getDate() throws ExceptionDate
+	{
+		Date date = new Date(Integer.parseInt(chDate[0].getText()), 
+				Integer.parseInt(chDate[1].getText()),
+				Integer.parseInt(chDate[2].getText()));
+		return date;
+	}
+	public String getChronologie()
+	{
+		return chChronologie.getText();
 	}
 }

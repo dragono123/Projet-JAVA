@@ -37,11 +37,11 @@ public class PanelFrise extends JPanel implements ActionListener{
 
     	if(evt.getActionCommand() == Data.items[2])
     	{
-    		String options[] = {"Oui", "Annuler"};
     		int choix = JOptionPane.showConfirmDialog(this, "Voulez-vous vraiment continuer ?", "Fermer la fenêtre", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
     		if(choix == JOptionPane.OK_OPTION)
     			System.exit(0);
     	}
 	}
+	
 	
 }
