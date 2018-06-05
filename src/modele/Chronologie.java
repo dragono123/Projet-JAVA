@@ -10,11 +10,13 @@ public class Chronologie {
 	private TreeMap <Integer, TreeMap<Integer, Evt>>chTreeMap;
 	private int chAnDebut;
 	private int chAnFin;
-	public Chronologie(int parAnDebut, int parAnFin)
+	private String chNom;
+	public Chronologie(int parAnDebut, int parAnFin, String parNom)
 	{
 		chTreeMap = new TreeMap<Integer, TreeMap<Integer, Evt>>();
 		chAnDebut = parAnDebut;
 		chAnFin = parAnFin;
+		chNom = parNom;
 	}
 	
 	public void ajout(Evt parEvt) throws ExceptionChronologie
@@ -40,6 +42,23 @@ public class Chronologie {
 			nouveauTreeMap.put(parEvt.getPoids(), parEvt);
 			chTreeMap.put(an, nouveauTreeMap);
 		}
+	}
+	public String getNom()
+	{
+		return chNom;
+	}
+	public void setNom(String parNom)
+	{
+		chNom = parNom;
+	}
+	
+	public int getAnDebut()
+	{
+		return chAnDebut;
+	}
+	public int getAnFin()
+	{
+		return chAnFin;
 	}
 	public boolean containsKey(Integer key)
 	{
