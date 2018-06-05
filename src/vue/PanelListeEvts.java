@@ -7,21 +7,22 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 
+import modele.Chronologie;
 import modele.ModeleTable;
 
 
 public class PanelListeEvts extends JPanel{
-	
-	public PanelListeEvts()
+	Chronologie chChronologie;
+	public PanelListeEvts(Chronologie parChronologie)
 	{
 		JTable friseTable = new JTable();
-		ModeleTable modele = new ModeleTable();
+		chChronologie = parChronologie;
+		ModeleTable modele = new ModeleTable(chChronologie);
 		friseTable.setModel(modele);
-
 		for(int i = 0; i < modele.getColumnCount(); i++)
 		{
 			friseTable.getColumnModel().getColumn(i).setPreferredWidth(60);
-			friseTable.getColumnModel().getColumn(i).setCellRenderer(new RendererIcon());
+			friseTable.getColumnModel().getColumn(i).setCellRenderer(new RendererIcon(chChronologie));
 		}
 		add(new JScrollPane(friseTable, ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED));
 		friseTable.setRowHeight(60);
@@ -29,6 +30,5 @@ public class PanelListeEvts extends JPanel{
 		friseTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		setPreferredSize(new Dimension(1100, 250));
 		friseTable.setPreferredScrollableViewportSize(new Dimension(1100, 240));
-
 	}
 }

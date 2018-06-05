@@ -47,7 +47,6 @@ public class Controleur implements ActionListener{
 					chrono.ajout(evt);
 				}
 				catch (ExceptionDate e) {
-					
 				}
 				catch (ExceptionEvt e) {
 				} 

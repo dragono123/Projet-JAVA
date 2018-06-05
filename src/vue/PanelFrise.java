@@ -8,15 +8,17 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import modele.Historique;
+
 import data.Data;
 
 public class PanelFrise extends JPanel implements ActionListener{
 
 	private CardLayout layout = new CardLayout(5,5);
-	public PanelFrise(JMenuItem[] parItems)
+	public PanelFrise(JMenuItem[] parItems, Historique historique)
 	{
 		setLayout(layout);
-		PanelAffichage affiche = new PanelAffichage();
+		PanelAffichage affiche = new PanelAffichage(historique);
 		PanelFormulaire formulaire = new PanelFormulaire();
 		
 		add(Data.items[1], affiche);

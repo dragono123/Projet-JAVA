@@ -1,5 +1,8 @@
 package modele;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.TreeMap;
 
 public class Historique {
@@ -19,5 +22,18 @@ public class Historique {
 	public boolean contientCle(String key)
 	{
 		return mapChronologie.containsKey(key);
+	}
+	public boolean estVide()
+	{
+		return mapChronologie.isEmpty();
+	}
+	public Chronologie getRandomChronologie()
+	{
+		Random       random    = new Random();
+		
+		List<String> keys      = new ArrayList<String>(mapChronologie.keySet());
+		String       randomKey = keys.get(random.nextInt(keys.size()));
+		
+		return mapChronologie.get(randomKey);
 	}
 }

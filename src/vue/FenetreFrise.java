@@ -8,11 +8,19 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import modele.Chronologie;
+import modele.Date;
+import modele.Evt;
+import modele.ExceptionChronologie;
+import modele.ExceptionDate;
+import modele.ExceptionEvt;
+import modele.Historique;
+
 import data.Data;
 
 public class FenetreFrise extends JFrame {
 
-	public FenetreFrise()
+	public FenetreFrise(Historique historique)
 	{
 		super("Frise chronologique");
 		
@@ -31,17 +39,31 @@ public class FenetreFrise extends JFrame {
 		menuBar.add(items[Data.items.length - 1]);
 		
 		
-		PanelFrise contentPane = new PanelFrise(items);
+		PanelFrise contentPane = new PanelFrise(items, historique);
 		
 		setContentPane(contentPane);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(1200,550);
 		setVisible(true);
 		setLocation(200,300);
-		
 	}
 	public static void main(String args[])
 	{
-		new FenetreFrise();
+		Historique historique = new Historique();
+		Chronologie chrono = new Chronologie(1954, 2019, "Godzilla", "images");
+		historique.ajout(chrono);
+		try {
+			chrono.ajout(new Evt(new Date(14, 5, 2014), "Godzilla 2014", "Sortie du film", 3, "imageTest.jpg"));
+		} catch (ExceptionChronologie e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionEvt e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionDate e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		new FenetreFrise(historique);
 	}
 }

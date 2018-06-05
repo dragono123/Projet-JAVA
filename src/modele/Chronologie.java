@@ -70,10 +70,9 @@ public class Chronologie {
 	{
 		return chTreeMap.containsKey(key);
 	}
-	public TreeMap<Integer, Evt> getEvtAn(Integer an)
+	public TreeMap<Integer, TreeMap<Integer, Evt>> getEvtListe()
 	{
-		TreeMap<Integer, Evt> evt = chTreeMap.get(an);
-		return evt;
+		return chTreeMap;
 	}
 	public String toString(){
 		String chaine = new String();
