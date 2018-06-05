@@ -51,13 +51,17 @@ public class PanelListeDescription extends JPanel{
 		TreeMap<Integer, TreeMap<Integer, Evt>> listeMap = chChronologie.getEvtListe();
 		if(!listeMap.isEmpty())
 			updateActu(listeMap.firstEntry().getValue().firstEntry().getValue());
+		else
+		{
+			evtCourant = null;
+			panelDesc.clearPanel();
+		}
 	}
 	public void updateActu(Evt parEvt)
 	{
 		evtCourant = parEvt;
 		panelDesc.updatePanel(parEvt.getFichier(), chChronologie.getDossier(), parEvt.getNom(), parEvt.getDate(), parEvt.getDescription());
 	}
-	
 	public void enregistreEcouteur(Controleur controleur)
 	{
 		boutonArriere.addActionListener(controleur);
@@ -69,7 +73,7 @@ public class PanelListeDescription extends JPanel{
 	public void afficherSuivant()
 	{
 
-		if(chChronologie != null)
+		if(chChronologie != null && evtCourant != null)
 		{
 			TreeMap<Integer, TreeMap<Integer, Evt>> listeMap = chChronologie.getEvtListe();
 			if(listeMap.size() != 0)
@@ -96,10 +100,12 @@ public class PanelListeDescription extends JPanel{
 				}
 			}
 		}
+		else if(chChronologie != null && evtCourant == null)
+			updatePremier();
 	}
 	public void afficherPrec()
 	{
-		if(chChronologie != null)
+		if(chChronologie != null && evtCourant != null)
 		{
 			TreeMap<Integer, TreeMap<Integer, Evt>> listeMap = chChronologie.getEvtListe();
 			if(listeMap.size() != 0)
@@ -133,6 +139,8 @@ public class PanelListeDescription extends JPanel{
 				
 			}
 		}
+		else if(chChronologie != null && evtCourant == null)
+			updatePremier();
 	}
 	
 }

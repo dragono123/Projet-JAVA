@@ -70,4 +70,9 @@ public class PanelDescription extends JPanel{
 				strDate + strNom + strDescription +
 				"</html>");
 	}
+	public void clearPanel()
+	{
+		image.setIcon(null);
+		description.setText("");
+	}
 }

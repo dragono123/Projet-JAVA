@@ -75,7 +75,7 @@ public class Controleur implements ActionListener{
 					Date date = new Date(chFormEvt.getDate());
 					Evt evt = new Evt(date, chFormEvt.getTitre(), chFormEvt.getDescription(), chFormEvt.getPoids(), chFormEvt.getFichier());
 					chrono.ajout(evt);
-					File file = new File(Data.saveFile + File.separator + chrono.getDossier());
+					File file = new File(Data.saveFile + File.separator + chrono.getSave());
 					LectureEcriture.ecriture(file, chrono);
 				}
 				catch (ExceptionDate e) {
