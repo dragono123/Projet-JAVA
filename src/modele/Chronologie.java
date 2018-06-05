@@ -1,11 +1,12 @@
 package modele;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-public class Chronologie {
+public class Chronologie implements Serializable{
 
 	private TreeMap <Integer, TreeMap<Integer, Evt>>chTreeMap;
 	private int chAnDebut;

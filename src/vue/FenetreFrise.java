@@ -2,6 +2,8 @@ package vue;
 
 
 import java.awt.Insets;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -17,6 +19,7 @@ import modele.ExceptionEvt;
 import modele.Historique;
 
 import data.Data;
+import data.LectureEcriture;
 
 public class FenetreFrise extends JFrame {
 
@@ -50,7 +53,7 @@ public class FenetreFrise extends JFrame {
 	public static void main(String args[])
 	{
 		Historique historique = new Historique();
-		Chronologie chrono = new Chronologie(1954, 2019, "Godzilla", "images", "godzilla.ser");
+		/*Chronologie chrono = new Chronologie(1954, 2019, "Godzilla", "images", "godzilla.ser");
 		historique.ajout(chrono);
 		try {
 			chrono.ajout(new Evt(new Date(14, 5, 2014), "Godzilla 2014", "Sortie du film", 3, "imageTest.jpg"));
@@ -64,6 +67,28 @@ public class FenetreFrise extends JFrame {
 		} catch (ExceptionDate e) {
 			
 			e.printStackTrace();
+		}*/
+		File dossier = new File(Data.saveFile);
+		if(!dossier.exists())
+		{
+			try {
+				dossier.createNewFile();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		File[] listOfFiles = dossier.listFiles();
+		for(int i = 0; i < listOfFiles.length; i++)
+		{
+			if(listOfFiles[i].isFile())
+			{
+				try {
+					Chronologie chrono = (Chronologie) LectureEcriture.lecture(listOfFiles[i]);
+					historique.ajout(chrono);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		new FenetreFrise(historique);
 	}

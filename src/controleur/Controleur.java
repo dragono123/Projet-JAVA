@@ -14,7 +14,7 @@ import modele.ExceptionEvt;
 import modele.Historique;
 
 import data.Data;
-
+import data.LectureEcriture;
 import vue.PanelAffichage;
 import vue.PanelFormChrono;
 import vue.PanelFormEvt;
@@ -50,7 +50,7 @@ public class Controleur implements ActionListener{
 			if(!chHistorique.contientValeur(chrono))
 			{
 				chHistorique.ajout(chrono);
-				File fichier = new File(chrono.getSave());
+				File fichier = new File(Data.saveFile + File.separator + chrono.getSave());
 				if(fichier.exists())
 					fichier.delete();
 				try {
@@ -58,7 +58,7 @@ public class Controleur implements ActionListener{
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				
+				LectureEcriture.ecriture(fichier, chrono);
 				chListeEvts.resetModele();
 			}
 		}
@@ -71,6 +71,8 @@ public class Controleur implements ActionListener{
 					Date date = new Date(chFormEvt.getDate());
 					Evt evt = new Evt(date, chFormEvt.getTitre(), chFormEvt.getDescription(), chFormEvt.getPoids(), chFormEvt.getFichier());
 					chrono.ajout(evt);
+					File file = new File(Data.saveFile + File.separator + chrono.getDossier());
+					LectureEcriture.ecriture(file, chrono);
 				}
 				catch (ExceptionDate e) {
 				}

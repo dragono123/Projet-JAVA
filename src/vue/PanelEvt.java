@@ -21,7 +21,8 @@ public class PanelEvt extends JPanel {
 		setLayout(new BorderLayout(5, 5));
 		panelListeDesc = new PanelListeDescription(parChrono);
 		titreEvt.setFont(new Font("Courier", Font.BOLD, 14));
-		titreEvt.setText(parChrono.getNom());
+		if(parChrono != null)
+			titreEvt.setText(parChrono.getNom());
 		
 		add(titreEvt, BorderLayout.NORTH);
 		add(panelListeDesc, BorderLayout.SOUTH);
