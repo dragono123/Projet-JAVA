@@ -16,6 +16,7 @@ public class PanelAffichage extends JPanel
 	public PanelAffichage(Historique historique)
 	{
 		setLayout(new BorderLayout(10, 5));
+		Chronologie chChronoCourante;
 		if(historique.estVide())
 		{
 			panelEvts = new PanelListeEvts(null);
@@ -23,9 +24,9 @@ public class PanelAffichage extends JPanel
 		}
 		else
 		{
-			Chronologie chrono = historique.getRandomChronologie();
-			panelEvts = new PanelListeEvts(chrono);
-			panelEvt = new PanelEvt(chrono);
+			chChronoCourante = historique.getRandomChronologie();
+			panelEvts = new PanelListeEvts(chChronoCourante);
+			panelEvt = new PanelEvt(chChronoCourante);
 		}
 		add(panelEvt, BorderLayout.NORTH);
 		add(panelEvts, BorderLayout.CENTER);

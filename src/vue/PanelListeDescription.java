@@ -3,6 +3,7 @@ package vue;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -20,46 +21,38 @@ public class PanelListeDescription extends JPanel{
 	
 	private JButton boutonArriere;
 	private JButton boutonSuivant;
-	private CardLayout cardLayout = new CardLayout(5, 5);
 	private Chronologie chChronologie;
-	private JPanel panelDiapo;
-	
+	private Evt evtCourant;
+	private PanelDescription panelDesc;
 	public PanelListeDescription(Chronologie parChronologie)
 	{
 		setLayout(new BorderLayout(5, 5));
-		panelDiapo = new JPanel();
-		panelDiapo.setLayout(cardLayout);
 		boutonArriere = new JButton("<");
 		boutonSuivant = new JButton(">");
 		setPreferredSize(new Dimension(1100, 150));
 		
 		chChronologie = parChronologie;
-		
+		panelDesc = new PanelDescription();
 		if(chChronologie != null)
 		{
 			TreeMap<Integer, TreeMap<Integer, Evt>> listeMap = chChronologie.getEvtListe();
-			
-			Set<Integer> keysAn = listeMap.keySet();
-			for(Integer keyAn : keysAn)
-			{
-				TreeMap<Integer, Evt> listeEvt = listeMap.get(keyAn);
-				Set<Integer> keysPoids = listeEvt.keySet();
-				for(Integer keyPoids : keysPoids)
-					ajoutDiapo(listeEvt.get(keyPoids));
-			}
 			if(!listeMap.isEmpty())
-				cardLayout.first(panelDiapo);
+			{
+				evtCourant = listeMap.firstEntry().getValue().firstEntry().getValue();
+				panelDesc.updatePanel(evtCourant.getFichier(), 
+						chChronologie.getDossier(), evtCourant.getNom(), 
+						evtCourant.getDate(), evtCourant.getDescription());
+			}
 		}
 		
-		add(panelDiapo, BorderLayout.CENTER);
+		add(panelDesc, BorderLayout.CENTER);
 		add(boutonArriere, BorderLayout.WEST);
 		add(boutonSuivant, BorderLayout.EAST);
 	}
 	
-	public void ajoutDiapo(Evt parEvt)
+	public void updateActu(Evt parEvt)
 	{
-		PanelDescription panelDesc = new PanelDescription(parEvt.getFichier(), chChronologie.getDossier(), parEvt.getNom(), parEvt.getDate(), parEvt.getDescription());
-		panelDiapo.add(parEvt.getNom(), panelDesc);
+		panelDesc.updatePanel(parEvt.getFichier(), chChronologie.getDossier(), parEvt.getNom(), parEvt.getDate(), parEvt.getDescription());
 	}
 	
 	public void enregistreEcouteur(Controleur controleur)
@@ -72,11 +65,77 @@ public class PanelListeDescription extends JPanel{
 	}
 	public void afficherSuivant()
 	{
-		cardLayout.next(panelDiapo);
+
+		if(chChronologie != null)
+		{
+			TreeMap<Integer, TreeMap<Integer, Evt>> listeMap = chChronologie.getEvtListe();
+			if(listeMap.size() != 0)
+			{
+				Set<Integer> keysAn = listeMap.keySet();
+				Iterator<Integer> iteAn = keysAn.iterator();
+				int anEvt = evtCourant.getDate().getAn(), an = iteAn.next();
+				while(iteAn.hasNext() && an != anEvt)
+					an = iteAn.next();
+
+				TreeMap<Integer, Evt> listeEvtAn = listeMap.get(an);
+				Set<Integer> keysPoids = listeEvtAn.keySet();
+				Iterator<Integer> itePoids = keysPoids.iterator();
+				int poids = itePoids.next();
+				while(listeEvtAn.get(poids).getNom() != evtCourant.getNom())
+					poids = itePoids.next();
+				
+				if(itePoids.hasNext())
+					evtCourant = listeEvtAn.get(itePoids.next());
+				else if(iteAn.hasNext())
+				{
+					an = iteAn.next();
+					evtCourant = listeMap.get(an).firstEntry().getValue();
+				}
+				panelDesc.updatePanel(evtCourant.getFichier(), 
+						chChronologie.getDossier(), evtCourant.getNom(), 
+						evtCourant.getDate(), evtCourant.getDescription());
+			}
+		}
 	}
 	public void afficherPrec()
 	{
-		cardLayout.previous(panelDiapo);
+		if(chChronologie != null)
+		{
+			TreeMap<Integer, TreeMap<Integer, Evt>> listeMap = chChronologie.getEvtListe();
+			if(listeMap.size() != 0)
+			{
+				int poidsTampon, anTampon;
+				Set<Integer> keysAn = listeMap.keySet();
+				Iterator<Integer> iteAn = keysAn.iterator();
+				int anEvt = evtCourant.getDate().getAn(), an = iteAn.next();
+				anTampon = an;
+				while(iteAn.hasNext() && an != anEvt)
+				{
+					anTampon = an;
+					an = iteAn.next();
+				}
+				
+				TreeMap<Integer, Evt> listeEvtAn = listeMap.get(an);
+				Set<Integer> keysPoids = listeEvtAn.keySet();
+				Iterator<Integer> itePoids = keysPoids.iterator();
+				int poids = itePoids.next();
+				poidsTampon = 0;
+				while(listeEvtAn.get(poids).getNom() != evtCourant.getNom())
+				{
+					poidsTampon = poids;
+					poids = itePoids.next();
+				}
+				
+				if(poidsTampon == poids)
+					evtCourant = listeEvtAn.get(poidsTampon);
+				else
+					evtCourant = listeMap.get(anTampon).descendingMap().firstEntry().getValue();
+				
+				panelDesc.updatePanel(evtCourant.getFichier(), 
+						chChronologie.getDossier(), evtCourant.getNom(), 
+						evtCourant.getDate(), evtCourant.getDescription());
+			}
+		}
 	}
 	
 }

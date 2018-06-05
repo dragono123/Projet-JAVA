@@ -25,28 +25,34 @@ public class RendererIcon extends DefaultTableCellRenderer{
 	  @Override
 	  public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
 	      boolean hasFocus, int row, int column) {
-		  JLabel test = this;
+		  JLabel returnLabel = this;
 		  if(value != null)
 		  {
-			  //Permet de resize l'image pour éviter d'obtenir des images trop grandes ou trop petites tout en conservant le ratio
-			  ImageIcon imageOrigIcon = new ImageIcon(chDossier + File.separator + ((Evt) value).getFichier());
-			  Image imageOrig;
-			  if(imageOrigIcon.getIconHeight() > imageOrigIcon.getIconWidth())
-				  imageOrig = imageOrigIcon.getImage().getScaledInstance(
-						  60,
-						  imageOrigIcon.getIconHeight()*60/imageOrigIcon.getIconWidth(), 
-						  Image.SCALE_SMOOTH);
+			  File imageFile = new File(chDossier + File.separator + ((Evt) value).getFichier());
+			  if(imageFile.exists())
+			  {
+				  //Permet de resize l'image pour éviter d'obtenir des images trop grandes ou trop petites tout en conservant le ratio
+				  ImageIcon imageOrigIcon = new ImageIcon(chDossier + File.separator + ((Evt) value).getFichier());
+				  Image imageOrig;
+				  if(imageOrigIcon.getIconHeight() > imageOrigIcon.getIconWidth())
+					  imageOrig = imageOrigIcon.getImage().getScaledInstance(
+							  60,
+							  imageOrigIcon.getIconHeight()*60/imageOrigIcon.getIconWidth(), 
+							  Image.SCALE_SMOOTH);
+				  else
+					  imageOrig = imageOrigIcon.getImage().getScaledInstance(
+							  imageOrigIcon.getIconWidth()*60/imageOrigIcon.getIconHeight(), 
+							  60,
+							  Image.SCALE_SMOOTH);
+				  
+				  //Création de l'image
+				  JLabel image = new JLabel(new ImageIcon(imageOrig), JLabel.CENTER);
+				  returnLabel = image;
+			  }
 			  else
-				  imageOrig = imageOrigIcon.getImage().getScaledInstance(
-						  imageOrigIcon.getIconWidth()*60/imageOrigIcon.getIconHeight(), 
-						  60,
-						  Image.SCALE_SMOOTH);
-			  
-			  //Création de l'image
-			  JLabel image = new JLabel(new ImageIcon(imageOrig), JLabel.CENTER);
-			  test = image;
+				  returnLabel = new JLabel(((Evt)value).getNom());
 		  }
-		  return test;
+		  return returnLabel;
 	  }
 	
 }

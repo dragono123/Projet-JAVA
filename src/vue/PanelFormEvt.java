@@ -63,6 +63,7 @@ public class PanelFormEvt extends JPanel{
 			if(Data.titreElementsEvt[i].equals("Description"))
 			{
 				contrainte.gridheight = 3;
+				chDescription.setLineWrap(true);
 				add(new JScrollPane(chDescription, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 				label[i].setLabelFor(chDescription);
 				contrainte.gridy += 2;
@@ -77,7 +78,7 @@ public class PanelFormEvt extends JPanel{
 						chDate[j] = new JTextArea(1, 4);
 					else
 						chDate[j] = new JTextArea(1, 2);
-
+					chDate[j].setLineWrap(true);
 					add(new JScrollPane(chDate[j], ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 					contrainte.gridx++;
 					if(j != 2)
@@ -105,6 +106,7 @@ public class PanelFormEvt extends JPanel{
 				else
 					textArea = chChronologie;
 				
+				textArea.setLineWrap(true);
 				add(new JScrollPane(textArea, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 				label[i].setLabelFor(textArea);
 			}

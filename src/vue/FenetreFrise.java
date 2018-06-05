@@ -54,6 +54,7 @@ public class FenetreFrise extends JFrame {
 		historique.ajout(chrono);
 		try {
 			chrono.ajout(new Evt(new Date(14, 5, 2014), "Godzilla 2014", "Sortie du film", 3, "imageTest.jpg"));
+			chrono.ajout(new Evt(new Date(14, 5, 2016), "Shin Godzilla", "Retour du grand Godzilla", 2, "shin_godzilla.jpg"));
 		} catch (ExceptionChronologie e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

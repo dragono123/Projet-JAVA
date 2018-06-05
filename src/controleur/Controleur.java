@@ -52,9 +52,8 @@ public class Controleur implements ActionListener{
 				Chronologie chrono = chHistorique.getChronologie(chFormEvt.getChronologie());
 				try {
 					Date date = new Date(chFormEvt.getDate());
-					Evt evt = new Evt(date, chFormEvt.getName(), chFormEvt.getDescription(), chFormEvt.getPoids(), chFormEvt.getFichier());
+					Evt evt = new Evt(date, chFormEvt.getTitre(), chFormEvt.getDescription(), chFormEvt.getPoids(), chFormEvt.getFichier());
 					chrono.ajout(evt);
-					chPanelDescription.ajoutDiapo(evt);
 				}
 				catch (ExceptionDate e) {
 				}
