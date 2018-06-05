@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import modele.Chronologie;
+import modele.Evt;
 
 public class PanelEvt extends JPanel {
 	private JLabel titreEvt = new JLabel("", SwingConstants.CENTER);
@@ -32,5 +33,9 @@ public class PanelEvt extends JPanel {
 	public PanelListeDescription getPanelListeDesc()
 	{
 		return panelListeDesc;
+	}
+	public void updateActu(Evt parEvt)
+	{
+		panelListeDesc.updateActu(parEvt);
 	}
 }

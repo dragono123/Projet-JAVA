@@ -37,12 +37,7 @@ public class PanelListeDescription extends JPanel{
 		{
 			TreeMap<Integer, TreeMap<Integer, Evt>> listeMap = chChronologie.getEvtListe();
 			if(!listeMap.isEmpty())
-			{
-				evtCourant = listeMap.firstEntry().getValue().firstEntry().getValue();
-				panelDesc.updatePanel(evtCourant.getFichier(), 
-						chChronologie.getDossier(), evtCourant.getNom(), 
-						evtCourant.getDate(), evtCourant.getDescription());
-			}
+				updateActu(listeMap.firstEntry().getValue().firstEntry().getValue());
 		}
 		
 		add(panelDesc, BorderLayout.CENTER);
@@ -52,6 +47,7 @@ public class PanelListeDescription extends JPanel{
 	
 	public void updateActu(Evt parEvt)
 	{
+		evtCourant = parEvt;
 		panelDesc.updatePanel(parEvt.getFichier(), chChronologie.getDossier(), parEvt.getNom(), parEvt.getDate(), parEvt.getDescription());
 	}
 	
@@ -85,15 +81,12 @@ public class PanelListeDescription extends JPanel{
 					poids = itePoids.next();
 				
 				if(itePoids.hasNext())
-					evtCourant = listeEvtAn.get(itePoids.next());
+					updateActu(listeEvtAn.get(itePoids.next()));
 				else if(iteAn.hasNext())
 				{
 					an = iteAn.next();
-					evtCourant = listeMap.get(an).firstEntry().getValue();
+					updateActu(listeMap.get(an).firstEntry().getValue());
 				}
-				panelDesc.updatePanel(evtCourant.getFichier(), 
-						chChronologie.getDossier(), evtCourant.getNom(), 
-						evtCourant.getDate(), evtCourant.getDescription());
 			}
 		}
 	}
@@ -111,7 +104,7 @@ public class PanelListeDescription extends JPanel{
 				anTampon = an;
 				while(iteAn.hasNext() && an != anEvt)
 				{
-					anTampon = an;
+				 	anTampon = an;
 					an = iteAn.next();
 				}
 				
@@ -127,13 +120,10 @@ public class PanelListeDescription extends JPanel{
 				}
 				
 				if(poidsTampon == poids)
-					evtCourant = listeEvtAn.get(poidsTampon);
+					updateActu(listeEvtAn.get(poidsTampon));
 				else
-					evtCourant = listeMap.get(anTampon).descendingMap().firstEntry().getValue();
+					updateActu(listeMap.get(anTampon).descendingMap().firstEntry().getValue());
 				
-				panelDesc.updatePanel(evtCourant.getFichier(), 
-						chChronologie.getDossier(), evtCourant.getNom(), 
-						evtCourant.getDate(), evtCourant.getDescription());
 			}
 		}
 	}

@@ -19,13 +19,13 @@ public class PanelAffichage extends JPanel
 		Chronologie chChronoCourante;
 		if(historique.estVide())
 		{
-			panelEvts = new PanelListeEvts(null);
+			panelEvts = new PanelListeEvts(null, this);
 			panelEvt = new PanelEvt(null);
 		}
 		else
 		{
 			chChronoCourante = historique.getRandomChronologie();
-			panelEvts = new PanelListeEvts(chChronoCourante);
+			panelEvts = new PanelListeEvts(chChronoCourante, this);
 			panelEvt = new PanelEvt(chChronoCourante);
 		}
 		add(panelEvt, BorderLayout.NORTH);
