@@ -2,6 +2,8 @@ package controleur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import modele.Chronologie;
 import modele.Date;
@@ -37,13 +39,28 @@ public class Controleur implements ActionListener{
 		chPanelDescription = parAffiche.getPanelEvt().getPanelListeDesc();
 		chPanelDescription.enregistreEcouteur(this);
 	}
-
+	
 	public void actionPerformed(ActionEvent parEvt) 
 	{
 		if(parEvt.getActionCommand().equals(Data.commandAjoutChrono))
 		{
-			chHistorique.ajout(new Chronologie(chFormChrono.getAnDebut(), chFormChrono.getAnFin(), chFormChrono.getIntitule(), chFormChrono.getDossier()));
-			chListeEvts.resetModele();
+			Chronologie chrono = new Chronologie(chFormChrono.getAnDebut(), 
+					chFormChrono.getAnFin(), chFormChrono.getIntitule(), 
+					chFormChrono.getDossier(), chFormChrono.getSaveFile());
+			if(!chHistorique.contientValeur(chrono))
+			{
+				chHistorique.ajout(chrono);
+				File fichier = new File(chrono.getSave());
+				if(fichier.exists())
+					fichier.delete();
+				try {
+					fichier.createNewFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				chListeEvts.resetModele();
+			}
 		}
 		if(parEvt.getActionCommand().equals(Data.commandAjoutEvt))
 		{
@@ -64,7 +81,6 @@ public class Controleur implements ActionListener{
 			}
 			chListeEvts.resetModele();
 		}
-
 		if(parEvt.getActionCommand().equals(Data.commandDiapoDroite))
 		{
 			chPanelDescription.afficherSuivant();
@@ -74,7 +90,5 @@ public class Controleur implements ActionListener{
 			chPanelDescription.afficherPrec();
 		}
 	}
-	
-	
 	
 }

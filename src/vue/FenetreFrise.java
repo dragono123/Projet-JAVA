@@ -50,7 +50,7 @@ public class FenetreFrise extends JFrame {
 	public static void main(String args[])
 	{
 		Historique historique = new Historique();
-		Chronologie chrono = new Chronologie(1954, 2019, "Godzilla", "images");
+		Chronologie chrono = new Chronologie(1954, 2019, "Godzilla", "images", "godzilla.ser");
 		historique.ajout(chrono);
 		try {
 			chrono.ajout(new Evt(new Date(14, 5, 2014), "Godzilla 2014", "Sortie du film", 3, "imageTest.jpg"));

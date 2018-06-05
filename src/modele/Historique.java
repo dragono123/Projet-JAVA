@@ -23,16 +23,20 @@ public class Historique {
 	{
 		return mapChronologie.containsKey(key);
 	}
+	public boolean contientValeur(Chronologie parChrono)
+	{
+		return mapChronologie.containsValue(parChrono);
+	}
 	public boolean estVide()
 	{
 		return mapChronologie.isEmpty();
 	}
 	public Chronologie getRandomChronologie()
 	{
-		Random       random    = new Random();
+		Random random = new Random();
 		
-		List<String> keys      = new ArrayList<String>(mapChronologie.keySet());
-		String       randomKey = keys.get(random.nextInt(keys.size()));
+		List<String> keys = new ArrayList<String>(mapChronologie.keySet());
+		String randomKey = keys.get(random.nextInt(keys.size()));
 		
 		return mapChronologie.get(randomKey);
 	}

@@ -12,15 +12,16 @@ public class Chronologie {
 	private int chAnFin;
 	private String chNom;
 	private String chDossier;
-	public Chronologie(int parAnDebut, int parAnFin, String parNom, String parDossier)
+	private String chSauvegarde;
+	public Chronologie(int parAnDebut, int parAnFin, String parNom, String parDossier, String parSauvegarde)
 	{
 		chTreeMap = new TreeMap<Integer, TreeMap<Integer, Evt>>();
 		chAnDebut = parAnDebut;
 		chAnFin = parAnFin;
 		chNom = parNom;
 		chDossier = parDossier;
+		chSauvegarde = parSauvegarde;
 	}
-	
 	public void ajout(Evt parEvt) throws ExceptionChronologie
 	{
 		int an = parEvt.getDate().getAn();
@@ -88,5 +89,9 @@ public class Chronologie {
 			chaine += "\n";
 		}
 		return chaine;
+	}
+	public String getSave()
+	{
+		return chSauvegarde;
 	}
 }

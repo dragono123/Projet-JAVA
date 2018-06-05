@@ -21,6 +21,7 @@ public class PanelFormChrono extends JPanel{
 	private JTextArea chAnDebut = new JTextArea(1, 4);
 	private JTextArea chAnFin = new JTextArea(1, 4);
 	private JTextArea chDossier = new JTextArea();
+	private JTextArea chFichierSave = new JTextArea();
 	private JButton chAjout = new JButton();
 	public PanelFormChrono()
 	{
@@ -52,19 +53,11 @@ public class PanelFormChrono extends JPanel{
 			contrainte.gridx = 3;
 			contrainte.gridwidth = 8;
 			label[i].setDisplayedMnemonic(Data.titreElementsChrono[i].charAt(0));
-			if(Data.titreElementsChrono[i].equals("Intitulé"))
-			{
-				add(new JScrollPane(chIntitule, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
-				label[i].setLabelFor(chIntitule);
-			}
-			else if(Data.titreElementsChrono[i].equals("Emplacement images"))
-			{
-				add(new JScrollPane(chDossier, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
-				label[i].setLabelFor(chDossier);
-			}
-			else if(Data.titreElementsChrono[i].equals("Ère concernée"))
+			if(Data.titreElementsChrono[i].equals("Ère concernée"))
 			{
 				contrainte.gridwidth = 2;
+				chAnDebut.setLineWrap(true);
+				chAnFin.setLineWrap(true);
 				add(new JScrollPane(chAnDebut, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 				label[i].setLabelFor(chAnDebut);
 				contrainte.gridwidth = 1;
@@ -75,6 +68,20 @@ public class PanelFormChrono extends JPanel{
 				contrainte.gridwidth = 2;
 				add(new JScrollPane(chAnFin, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
 				contrainte.gridwidth = 8;
+			}
+			else
+			{
+				JTextArea textArea;
+				if(Data.titreElementsChrono[i].equals("Intitulé"))
+					textArea = chIntitule;
+				else if(Data.titreElementsChrono[i].equals("Emplacement images"))
+					textArea = chDossier;
+				else
+					textArea = chFichierSave;
+				
+				textArea.setLineWrap(true);
+				add(new JScrollPane(textArea, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER), contrainte);
+				label[i].setLabelFor(textArea);
 			}
 			contrainte.gridx = 0;
 		}
@@ -105,5 +112,9 @@ public class PanelFormChrono extends JPanel{
 	public Integer getAnFin()
 	{
 		return Integer.parseInt(chAnFin.getText());
+	}
+	public String getSaveFile()
+	{
+		return chFichierSave.getText();
 	}
 }
