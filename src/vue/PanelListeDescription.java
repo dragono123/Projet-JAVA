@@ -77,7 +77,7 @@ public class PanelListeDescription extends JPanel{
 				Set<Integer> keysPoids = listeEvtAn.keySet();
 				Iterator<Integer> itePoids = keysPoids.iterator();
 				int poids = itePoids.next();
-				while(listeEvtAn.get(poids).getNom() != evtCourant.getNom())
+				while(poids != evtCourant.getPoids())
 					poids = itePoids.next();
 				
 				if(itePoids.hasNext())
@@ -113,7 +113,7 @@ public class PanelListeDescription extends JPanel{
 				Iterator<Integer> itePoids = keysPoids.iterator();
 				int poids = itePoids.next();
 				poidsTampon = 0;
-				while(listeEvtAn.get(poids).getNom() != evtCourant.getNom())
+				while(poids != evtCourant.getPoids())
 				{
 					poidsTampon = poids;
 					poids = itePoids.next();
