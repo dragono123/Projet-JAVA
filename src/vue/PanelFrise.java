@@ -8,6 +8,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import controleur.Controleur;
+
 import modele.Historique;
 
 import data.Data;
@@ -20,6 +22,8 @@ public class PanelFrise extends JPanel implements ActionListener{
 		setLayout(layout);
 		PanelAffichage affiche = new PanelAffichage(historique);
 		PanelFormulaire formulaire = new PanelFormulaire();
+		
+		new Controleur(formulaire, affiche, historique);
 		
 		add(Data.items[1], affiche);
 		add(Data.items[0], formulaire);
@@ -44,6 +48,5 @@ public class PanelFrise extends JPanel implements ActionListener{
     			System.exit(0);
     	}
 	}
-	
 	
 }

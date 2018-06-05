@@ -13,10 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
+import modele.Date;
+
 public class PanelDescription extends JPanel{
 	private JEditorPane description = new JEditorPane();
 	private ImageIcon imageOrigIcon;
-	public PanelDescription()
+	public PanelDescription(String parNomImage, String parDossier, String nom, Date date, String Description)
 	{
 		setLayout(new BorderLayout(2,0));
 		//Permet de resize l'image pour éviter d'obtenir des images trop grandes ou trop petites tout en conservant le ratio

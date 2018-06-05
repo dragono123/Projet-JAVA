@@ -18,7 +18,8 @@ public class RendererIcon extends DefaultTableCellRenderer{
 	  public RendererIcon(Chronologie chrono)
 	  {
 		  super();
-		  chDossier = chrono.getDossier();
+		  if(chrono != null)
+			  chDossier = chrono.getDossier();
 	  }
 	  
 	  @Override

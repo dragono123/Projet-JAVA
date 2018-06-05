@@ -7,5 +7,7 @@ public class Data {
 	public static Integer[] poids = {1, 2, 3, 4};
 	public static String commandAjoutEvt = "Ajout Evt";
 	public static String commandAjoutChrono = "Ajout Chrono";
+	public static String commandDiapoGauche = "Gauche";
+	public static String commandDiapoDroite = "Droite";
 	
 }

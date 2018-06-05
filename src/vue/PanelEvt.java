@@ -9,17 +9,28 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import modele.Chronologie;
+
 public class PanelEvt extends JPanel {
 	private JLabel titreEvt = new JLabel("", SwingConstants.CENTER);
+	private PanelListeDescription panelListeDesc;
 	
-	public PanelEvt()
+	public PanelEvt(Chronologie parChrono)
 	{
 		setLayout(new BorderLayout(5, 5));
-		PanelListeDescription panelListeDesc = new PanelListeDescription();
+		panelListeDesc = new PanelListeDescription(parChrono);
 		titreEvt.setFont(new Font("Courier", Font.BOLD, 14));
-		titreEvt.setText("Text de base");
+		titreEvt.setText(parChrono.getNom());
 		
 		add(titreEvt, BorderLayout.NORTH);
 		add(panelListeDesc, BorderLayout.SOUTH);
+	}
+	public void setTitre(String nom)
+	{
+		titreEvt.setText(nom);
+	}
+	public PanelListeDescription getPanelListeDesc()
+	{
+		return panelListeDesc;
 	}
 }
