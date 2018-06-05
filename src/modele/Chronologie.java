@@ -7,49 +7,61 @@ import java.util.TreeSet;
 
 public class Chronologie {
 
-	private TreeMap <Integer, TreeSet<Evt>>chTreeMap;
-
-	public Chronologie()
+	private TreeMap <Integer, TreeMap<Integer, Evt>>chTreeMap;
+	private int chAnDebut;
+	private int chAnFin;
+	public Chronologie(int parAnDebut, int parAnFin)
 	{
-		chTreeMap = new TreeMap<Integer, TreeSet<Evt>>();
+		chTreeMap = new TreeMap<Integer, TreeMap<Integer, Evt>>();
+		chAnDebut = parAnDebut;
+		chAnFin = parAnFin;
 	}
 	
-	public void ajout(Evt parEvt)
+	public void ajout(Evt parEvt) throws ExceptionChronologie
 	{
-		int key = parEvt.getDate().getAn();
-		if(chTreeMap.containsKey(key))
-			chTreeMap.get(key).add(parEvt);
+		int an = parEvt.getDate().getAn();
+		
+		if(an < chAnDebut)
+			throw new ExceptionChronologie("Année de l'Evt inférieur à l'année de début de la chronologie");
+		if(an > chAnFin)
+			throw new ExceptionChronologie("Année de l'Evt supérieur à l'année de fin de la chronologie");
+		
+		if(chTreeMap.containsKey(an))
+		{
+			TreeMap<Integer, Evt> listeEvtAn = chTreeMap.get(an);
+			if(listeEvtAn.containsKey(parEvt.getPoids()))
+				throw new ExceptionChronologie("Evt de poids équivalent déjà existant !");
+			else
+				listeEvtAn.put(parEvt.getPoids(), parEvt);
+		}
 		else
 		{
-			TreeSet <Evt>newSet = new TreeSet<Evt>();
-			chTreeMap.put(parEvt.getDate().getNoSemaine(), newSet);
+			TreeMap<Integer, Evt> nouveauTreeMap = new TreeMap<Integer, Evt>();
+			nouveauTreeMap.put(parEvt.getPoids(), parEvt);
+			chTreeMap.put(an, nouveauTreeMap);
 		}
 	}
 	public boolean containsKey(Integer key)
 	{
 		return chTreeMap.containsKey(key);
 	}
-	public TreeSet<Evt> getEvtList(Integer key)
+	public TreeMap<Integer, Evt> getEvtAn(Integer an)
 	{
-		TreeSet<Evt> evt = chTreeMap.get(key);
+		TreeMap<Integer, Evt> evt = chTreeMap.get(an);
 		return evt;
 	}
 	public String toString(){
 		String chaine = new String();
-		Set<Integer> keys = chTreeMap.keySet();
+		Set<Integer> keysAn = chTreeMap.keySet();
 		
-		for (Integer key : keys)
+		for (Integer keyAn : keysAn)
 		{
-			chaine += "Semaine " + key + ":\n";
-			Iterator <Evt>ite = chTreeMap.get(key).iterator();
-			if(!ite.hasNext())
-			{
-				chaine += "Pas d'éléments \n";
-			}
-			while(ite.hasNext())
-			{
-				chaine += "-" + ite.next().toString() + "\n";
-			}
+			TreeMap<Integer, Evt> listeEvtAn = chTreeMap.get(keyAn);
+			Set<Integer> keysPoids = listeEvtAn.keySet();
+			chaine += keyAn + " :\n";
+			for(Integer keyPoids : keysPoids)
+				chaine += listeEvtAn.get(keyPoids);
+			chaine += "\n";
 		}
 		return chaine;
 	}
