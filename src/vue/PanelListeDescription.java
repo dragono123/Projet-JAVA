@@ -142,5 +142,8 @@ public class PanelListeDescription extends JPanel{
 		else if(chChronologie != null && evtCourant == null)
 			updatePremier();
 	}
-	
+	public Evt getEvtCourant()
+	{
+		return evtCourant;
+	}
 }

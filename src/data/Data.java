@@ -11,4 +11,5 @@ public class Data {
 	public static String commandDiapoDroite = "Droite";
 	public static String saveFile = "saves";
 	public static String imageRepository = "images";
+	public static int cellWidth = 55, cellHeight = 55;
 }

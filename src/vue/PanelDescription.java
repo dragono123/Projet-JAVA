@@ -45,7 +45,6 @@ public class PanelDescription extends JPanel{
 	}
 	public void updatePanel(String parNomImage, String parDossier, String nom, Date date, String parDescription)
 	{
-
 		imageOrigIcon = new ImageIcon(Data.imageRepository + File.separator + parDossier + File.separator + parNomImage);
 		Image imageOrig = imageOrigIcon.getImage().getScaledInstance(
 				imageOrigIcon.getIconWidth()*150/imageOrigIcon.getIconHeight(), 

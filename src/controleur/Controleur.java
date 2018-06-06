@@ -90,10 +90,12 @@ public class Controleur implements ActionListener{
 		if(parEvt.getActionCommand().equals(Data.commandDiapoDroite))
 		{
 			chPanelDescription.afficherSuivant();
+			chListeEvts.updateScrollBar(chPanelDescription.getEvtCourant().getDate().getAn());
 		}
 		if(parEvt.getActionCommand().equals(Data.commandDiapoGauche))
 		{
 			chPanelDescription.afficherPrec();
+			chListeEvts.updateScrollBar(chPanelDescription.getEvtCourant().getDate().getAn());
 		}
 	}
 	
