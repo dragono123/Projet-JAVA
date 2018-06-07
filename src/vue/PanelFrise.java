@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.CardLayout;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -82,6 +83,25 @@ public class PanelFrise extends JPanel implements ActionListener{
     		int choix = JOptionPane.showConfirmDialog(this, "Voulez-vous vraiment continuer ?", "Fermer la fenêtre", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
     		if(choix == JOptionPane.OK_OPTION)
     			System.exit(0);
+    	}
+    	if(evt.getActionCommand() == Data.items[3])
+    	{
+    		File file = new File("manuel.pdf");
+    		if(!Desktop.isDesktopSupported()){
+                System.out.println("Desktop is not supported");
+            }
+    		else
+    		{
+
+    	        Desktop desktop = Desktop.getDesktop();
+    	        if(file.exists())
+    	        {
+					try {
+						desktop.open(file);
+					} catch (IOException e) {
+					}
+    	        }
+    		}
     	}
 	}
 	
