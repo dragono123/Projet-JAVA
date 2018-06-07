@@ -52,7 +52,7 @@ public class PanelListeDescription extends JPanel{
 	}
 	/**
 	 * Permet lors d'un changement de chronologie, de toujours revenir au premier élément de la chronologie
-	 * @param parChronologie
+	 * @param parChronologie correspond à la nouvelle chronologie
 	 */
 	public void updateChronologie(Chronologie parChronologie)
 	{
@@ -84,7 +84,7 @@ public class PanelListeDescription extends JPanel{
 		panelDesc.updatePanel(evtCourant, chChronologie.getDossier());
 	}
 	/**
-	 * Permet au controleur de se mettre à l'écoute des deux boutons suivant('>') et arrière ('<')
+	 * Permet au controleur de se mettre à l'écoute des deux boutons suivant et arrière
 	 * @param controleur correspond au controleur se mettant à l'écoute
 	 */
 	public void enregistreEcouteur(Controleur controleur)

@@ -18,7 +18,7 @@ public class LectureEcriture {
 	 * Cette fonction permet la lecture d'un fichier
 	 * @param parFichier qu'on lit
 	 * @return Objet récupérer à partir du fichier111
-	 * @throws IOException
+	 * @throws IOException Permet de gérer les érreurs en cas de soucis au niveau de la lecture
 	 */
 	public static Object lecture (File parFichier) throws  IOException {
 		ObjectInputStream flux ;

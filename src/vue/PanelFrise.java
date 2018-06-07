@@ -29,7 +29,7 @@ public class PanelFrise extends JPanel implements ActionListener{
 	private CardLayout layout = new CardLayout(5,5);
 	/**
 	 * Cette fonction construit le panel principal et implèmente la gestion des JMenuItem
-	 * @param permet à ce que PanelFrise puisse se mettre à l'écoute des JMenuItem et changer de panel si besoin est-il.
+	 * @param parItems permet à ce que PanelFrise puisse se mettre à l'écoute des JMenuItem et changer de panel si besoin est-il.
 	 */
 	public PanelFrise(JMenuItem[] parItems)
 	{

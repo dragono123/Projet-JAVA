@@ -37,8 +37,8 @@ public class Chronologie implements Serializable{
 	}
 	/**
 	 * Permet l'ajout d'un Evt dans la chronologie
-	 * @param parEvt
-	 * @throws ExceptionChronologie
+	 * @param parEvt correspond à l'évènement ajouté
+	 * @throws ExceptionChronologie est appelé dans le cas où l'évènement n'est pas situé dans la bonne période
 	 */
 	public void ajout(Evt parEvt) throws ExceptionChronologie
 	{
@@ -102,7 +102,7 @@ public class Chronologie implements Serializable{
 
 	/**
 	 * Getter permettant de récupérer la liste d'Evt de la chronologie
-	 * @return chTreeMap qui représente la liste d'Evt de la chronologie (sous la forme : TreeMap<Integer, TreeMap<Integer, Evt>>)
+	 * @return chTreeMap qui représente la liste d'Evt de la chronologie (sous la forme de deux TreeMap imbriquées, avec comme clés, l'année puis le poids)
 	 */
 	public TreeMap<Integer, TreeMap<Integer, Evt>> getEvtListe()
 	{

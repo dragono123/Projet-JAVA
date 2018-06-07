@@ -177,6 +177,7 @@ public class PanelFormEvt extends JPanel{
 	/**
 	 * Permet de récupérer la date insérée dans le champs "Jour\Mois\An"
 	 * @return la date insérée par l'utilisateur dans le champs "Jour\Mois\An"
+	 * @throws ExceptionDate Gère les erreurs au moment de la récupération de la date
 	 */
 	public Date getDate() throws ExceptionDate
 	{

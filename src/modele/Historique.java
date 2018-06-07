@@ -62,7 +62,7 @@ public class Historique {
 	}
 	/**
 	 * Permet de vérifier si la collection contient une valeur
-	 * @param valeur chronologie dont on teste la présence
+	 * @param parChrono valeur chronologie dont on teste la présence
 	 * @return false si elle n'est pas présente, true si elle l'est
 	 */
 	public boolean contientValeur(Chronologie parChrono)

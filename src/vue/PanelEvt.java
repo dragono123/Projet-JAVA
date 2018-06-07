@@ -31,7 +31,7 @@ public class PanelEvt extends JPanel implements ActionListener{
 	 * Constructeur du panel
 	 * @param parChrono correspond à la chronologie courante(choisie au hasard) qui sera d'abord affiché
 	 * @param parHistorique correspond à l'historique 
-	 * @param parPanelEvtListe parPanelEvtListe
+	 * @param parAffichage parPanelEvtListe
 	 */
 	public PanelEvt(Chronologie parChrono, Historique parHistorique, PanelAffichage parAffichage)
 	{
