@@ -1,7 +1,6 @@
 package vue;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.util.Iterator;
 import java.util.Set;
@@ -16,6 +15,13 @@ import data.Data;
 import modele.Chronologie;
 import modele.Evt;
 
+/**
+ * 
+ * Cette classe représente le panel contenant les boutons permettant de naviguer entre les différents évènements d'une même chronologie et le panel affichang l'évènement
+ * @author Vincent LIM Simon Ledoit
+ * @version 1.0
+ *
+ */
 public class PanelListeDescription extends JPanel{
 
 	
@@ -24,6 +30,10 @@ public class PanelListeDescription extends JPanel{
 	private Chronologie chChronologie;
 	private Evt evtCourant;
 	private PanelDescription panelDesc;
+	/**
+	 * Constructeur permettant d'instancier les différents composants du panel
+	 * @param parChronologie correspond à la chronologie courante
+	 */
 	public PanelListeDescription(Chronologie parChronologie)
 	{
 		setLayout(new BorderLayout(5, 5));
@@ -40,12 +50,19 @@ public class PanelListeDescription extends JPanel{
 		add(boutonArriere, BorderLayout.WEST);
 		add(boutonSuivant, BorderLayout.EAST);
 	}
+	/**
+	 * Permet lors d'un changement de chronologie, de toujours revenir au premier élément de la chronologie
+	 * @param parChronologie
+	 */
 	public void updateChronologie(Chronologie parChronologie)
 	{
 		chChronologie = parChronologie;
 		if(chChronologie != null)
 			updatePremier();
 	}
+	/**
+	 * Permet d'afficher le premier élément d'une chronologie
+	 */
 	public void updatePremier()
 	{
 		TreeMap<Integer, TreeMap<Integer, Evt>> listeMap = chChronologie.getEvtListe();
@@ -57,11 +74,19 @@ public class PanelListeDescription extends JPanel{
 			panelDesc.clearPanel();
 		}
 	}
+	/**
+	 * Permet de changer l'affichage d'évènement actuel par un nouvel évènement
+	 * @param parEvt est le nouvel évènement qui sera affiché
+	 */
 	public void updateActu(Evt parEvt)
 	{
 		evtCourant = parEvt;
-		panelDesc.updatePanel(parEvt.getFichier(), chChronologie.getDossier(), parEvt.getNom(), parEvt.getDate(), parEvt.getDescription());
+		panelDesc.updatePanel(evtCourant, chChronologie.getDossier());
 	}
+	/**
+	 * Permet au controleur de se mettre à l'écoute des deux boutons suivant('>') et arrière ('<')
+	 * @param controleur correspond au controleur se mettant à l'écoute
+	 */
 	public void enregistreEcouteur(Controleur controleur)
 	{
 		boutonArriere.addActionListener(controleur);
@@ -70,6 +95,9 @@ public class PanelListeDescription extends JPanel{
 		boutonSuivant.setActionCommand(Data.commandDiapoDroite);
 		
 	}
+	/**
+	 * Permet d'afficher l'évènement suivant dans la liste
+	 */
 	public void afficherSuivant()
 	{
 
@@ -103,6 +131,9 @@ public class PanelListeDescription extends JPanel{
 		else if(chChronologie != null && evtCourant == null)
 			updatePremier();
 	}
+	/**
+	 * Permet d'afficher l'évènement précédent
+	 */
 	public void afficherPrec()
 	{
 		if(chChronologie != null && evtCourant != null)
@@ -142,6 +173,10 @@ public class PanelListeDescription extends JPanel{
 		else if(chChronologie != null && evtCourant == null)
 			updatePremier();
 	}
+	/**
+	 * Getter permettant de récupérer l'évènement courant
+	 * @return l'évènement courant (Evt)
+	 */
 	public Evt getEvtCourant()
 	{
 		return evtCourant;

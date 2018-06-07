@@ -15,14 +15,19 @@ import modele.Evt;
 public class RendererIcon extends DefaultTableCellRenderer{
 	
 	  private String chDossier;
-	  
+	  /**
+	   * Constructeur permettant au RenderIcon d'accéder au dossier d'image de la chronologie
+	   * @param chrono est la chronologie dont on récupère le dossier d'image
+	   */
 	  public RendererIcon(Chronologie chrono)
 	  {
 		  super();
 		  if(chrono != null)
 			  chDossier = chrono.getDossier();
 	  }
-	  
+	  /**
+	   * Permet l'affichage de l'image de l'Evt, du nom quand l'image n'existe pas et le tool tip text
+	   */
 	  @Override
 	  public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
 	      boolean hasFocus, int row, int column) {
@@ -52,6 +57,7 @@ public class RendererIcon extends DefaultTableCellRenderer{
 			  }
 			  else
 				  returnLabel = new JLabel(((Evt)value).getNom());
+			  returnLabel.setToolTipText(((Evt)value).getNom());
 		  }
 		  return returnLabel;
 	  }

@@ -20,6 +20,12 @@ import controleur.Controleur;
 
 import data.Data;
 
+/**
+ * 
+ * Ce panel est le panel représentant le formulaire d'évènement
+ * @author Vincent LIM Simon Ledoit
+ * @version 1.0
+ */
 public class PanelFormEvt extends JPanel{
 	private JTextArea[] chDate = new JTextArea[3];
 	private JTextArea chFichier = new JTextArea();
@@ -28,6 +34,11 @@ public class PanelFormEvt extends JPanel{
 	private JTextArea chChronologie = new JTextArea();
 	private JComboBox chPoids;
 	private JButton chAjout;
+
+	/**
+	 * 
+	 * Constructeur permettant d'instancier les différents élements du formulaire
+	 */
 	public PanelFormEvt()
 	{
 		JLabel titrePanel = new JLabel("Formulaire d'Evènements");
@@ -119,27 +130,54 @@ public class PanelFormEvt extends JPanel{
 		contrainte.gridy++;
 		add(chAjout, contrainte);
 	}
+
+	/**
+	 * Permet au controleur de se mettre à l'écoute du JButton
+	 * @param parControleur correspond au controleur que l'on souhaite enregistrer
+	 */
 	public void enregistreEcouteur(Controleur parControleur)
 	{
 		chAjout.addActionListener(parControleur);
 		chAjout.setActionCommand(Data.commandAjoutEvt);
 	}
+	/**
+	 * Permet de récupérer le texte inséré dans le champs "Nom de l'image"
+	 * @return le texte ajouté par l'utilisateur dans le champs "Nom de l'image"
+	 */
 	public String getFichier()
 	{
 		return chFichier.getText();
 	}
+	/**
+	 * Permet de récupérer le texte inséré dans le champs "Description"
+	 * @return le texte ajouté par l'utilisateur dans le champs "Description"
+	 */
 	public String getDescription()
 	{
 		return chDescription.getText();
 	}
+
+	/**
+	 * Permet de récupérer la valeur du poids choisi dans le JComboBox désigné par le label "Poids"
+	 * @return la valeur du poids choisi dans le JComboBox désigné par le label "Poids"
+	 */
 	public Integer getPoids()
 	{
 		return (Integer) chPoids.getSelectedItem();
 	}
+	/**
+	 * Permet de récupérer le texte inséré dans le champs "Titre"
+	 * @return le texte ajouté par l'utilisateur dans le champs "Titre"
+	 */
 	public String getTitre()
 	{
 		return chTitre.getText();
 	}
+
+	/**
+	 * Permet de récupérer la date insérée dans le champs "Jour\Mois\An"
+	 * @return la date insérée par l'utilisateur dans le champs "Jour\Mois\An"
+	 */
 	public Date getDate() throws ExceptionDate
 	{
 		Date date = new Date(Integer.parseInt(chDate[0].getText()), 
@@ -147,6 +185,10 @@ public class PanelFormEvt extends JPanel{
 				Integer.parseInt(chDate[2].getText()));
 		return date;
 	}
+	/**
+	 * Permet de récupérer le texte inséré dans le champs "Chronologie"
+	 * @return le texte ajouté par l'utilisateur dans le champs "Chronologie"
+	 */
 	public String getChronologie()
 	{
 		return chChronologie.getText();

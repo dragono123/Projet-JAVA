@@ -12,14 +12,16 @@ public class LectureEcriture {
 	ObjectInputStream flux ;
 	Object objetLu = null;
 	// Ouverture du fichier en mode lecture
-	try {
-	flux = new ObjectInputStream(new FileInputStream (parFichier));
-	objetLu = (Object)flux.readObject ();
-	flux.close ();
+	try 
+	{
+		flux = new ObjectInputStream(new FileInputStream (parFichier));
+		objetLu = (Object)flux.readObject ();
+		flux.close ();
 	}
-	catch (ClassNotFoundException parException) {
-	System.err.println (parException.toString ());
-	System.exit (1);
+	catch (ClassNotFoundException parException) 
+	{
+		System.err.println (parException.toString ());
+		System.exit (1);
 	}
 	return objetLu ;
 	}  // lecture ()

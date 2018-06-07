@@ -8,8 +8,19 @@ import javax.swing.KeyStroke;
 
 import data.Data;
 
-public class FenetreFrise extends JFrame {
+/**
+ * 
+ * Cette classe joue le rôle de la fenêtre mère de l'application
+ * @author Vincent LIM Simon Ledoit
+ * @version 1.0
+ *
+ */
 
+public class FenetreFrise extends JFrame {
+	
+	/**
+	 * Le constructeur ne demande aucun paramètre particulier.
+	 */
 	public FenetreFrise()
 	{
 		super("Frise chronologique");

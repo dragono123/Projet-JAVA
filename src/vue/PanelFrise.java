@@ -17,24 +17,30 @@ import modele.Historique;
 import data.Data;
 import data.LectureEcriture;
 
+/**
+ * 
+ * Cette classe représente le panel principal qui contiendra tous les panels de l'application
+ * @author Vincent LIM Simon Ledoit
+ * @version 1.0
+ *
+ */
 public class PanelFrise extends JPanel implements ActionListener{
 
 	private CardLayout layout = new CardLayout(5,5);
+	/**
+	 * Cette fonction construit le panel principal et implèmente la gestion des JMenuItem
+	 * @param permet à ce que PanelFrise puisse se mettre à l'écoute des JMenuItem et changer de panel si besoin est-il.
+	 */
 	public PanelFrise(JMenuItem[] parItems)
 	{
 		setLayout(layout);
 
 		Historique historique = new Historique();
+		// Ouverture de l'ensemble des fichiers de save contenus dans le dossier saves qu'on rajoute dans Historique
 		File dossier = new File(Data.saveFile);
-		if(!dossier.exists())
-		{
-			try {
-				dossier.createNewFile();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
+		
 		File[] listOfFiles = dossier.listFiles();
+		
 		for(int i = 0; i < listOfFiles.length; i++)
 		{
 			if(listOfFiles[i].isFile())
@@ -47,9 +53,10 @@ public class PanelFrise extends JPanel implements ActionListener{
 				}
 			}
 		}
+		
 		PanelAffichage affiche = new PanelAffichage(historique);
 		PanelFormulaire formulaire = new PanelFormulaire();
-		
+		// On instancie le contrôleur
 		new Controleur(formulaire, affiche, historique);
 		
 		add(Data.items[1], affiche);
@@ -61,7 +68,9 @@ public class PanelFrise extends JPanel implements ActionListener{
 			parItems[i].setActionCommand(Data.items[i]);
 		}
 	}
-	
+	/**
+	 * On donne la possibilité de rajouté à l'utilisateur de pourvoir naviguer entre les panels affichage et formulaire à l'aide de la barre de menu
+	 */
 	public void actionPerformed(ActionEvent evt) {
 		if(evt.getActionCommand().equals(Data.items[0]))
 			layout.show(this, evt.getActionCommand());

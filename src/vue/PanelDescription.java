@@ -14,17 +14,26 @@ import javax.swing.JScrollPane;
 
 import data.Data;
 import modele.Date;
+import modele.Evt;
 
+/**
+ * 
+ * Ce panel est le panel où se trouve l'image, et le la description de l'Evt
+ * @author Vincent LIM Simon Ledoit
+ * @version 1.0
+ *
+ */
 public class PanelDescription extends JPanel{
 	private JEditorPane description = new JEditorPane();
 	private ImageIcon imageOrigIcon;
 	private JLabel image;
+	/**
+	 * On construit les deux panels dont on instancie dans le constructeur aucune image/text
+	 */
 	public PanelDescription()
 	{
 		setLayout(new BorderLayout(2,0));
-		//Permet de resize l'image pour éviter d'obtenir des images trop grandes ou trop petites tout en conservant le ratio
 		//Création de l'image
-		//image = new JLabel(new ImageIcon(imageOrig), JLabel.CENTER);
 		image = new JLabel();
 		
 		description.setContentType("text/html");
@@ -42,9 +51,14 @@ public class PanelDescription extends JPanel{
 		add(image, BorderLayout.WEST);
 		add(scrollPane, BorderLayout.CENTER);
 	}
-	public void updatePanel(String parNomImage, String parDossier, String nom, Date date, String parDescription)
+	/**
+	 * Permet de mettre à jour le panel description à partir d'un évènement et du dossier où se situe les images de la chronologie
+	 * @param parEvt correspond à l'évènement affiché par le PanelDescription
+	 * @param parDossier correspond au dossier où se situe l'image de l'évènement
+	 */
+	public void updatePanel(Evt parEvt, String parDossier)
 	{
-		imageOrigIcon = new ImageIcon(Data.imageRepository + File.separator + parDossier + File.separator + parNomImage);
+		imageOrigIcon = new ImageIcon(Data.imageRepository + File.separator + parDossier + File.separator + parEvt.getFichier());
 		Image imageOrig = imageOrigIcon.getImage().getScaledInstance(
 				imageOrigIcon.getIconWidth()*150/imageOrigIcon.getIconHeight(), 
 				150,
@@ -52,15 +66,15 @@ public class PanelDescription extends JPanel{
 
 		image.setIcon(new ImageIcon(imageOrig));
 
-		String strDate = "<h3>" + date.toString() + "</h3>";
-		String strNom = "<h3>" + nom + "</h3>";
+		String strDate = "<h3>" + parEvt.getDate().toString() + "</h3>";
+		String strNom = "<h3>" + parEvt.getNom() + "</h3>";
 		String strDescription = "<p>";
-		for(int i = 0; i < parDescription.length(); i++)
+		for(int i = 0; i < parEvt.getDescription().length(); i++)
 		{
-			if(parDescription.charAt(i) == '\n')
+			if(parEvt.getDescription().charAt(i) == '\n')
 				strDescription += "<br>";
 			else
-				strDescription += parDescription.charAt(i);
+				strDescription += parEvt.getDescription().charAt(i);
 		}
 		strDescription += "</p>";
 		
@@ -68,6 +82,9 @@ public class PanelDescription extends JPanel{
 				strDate + strNom + strDescription +
 				"</html>");
 	}
+	/**
+	 * Permet d'enlever toutes les informations des deux panels(image et description)
+	 */
 	public void clearPanel()
 	{
 		image.setIcon(null);
