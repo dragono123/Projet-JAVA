@@ -12,6 +12,13 @@ import data.Data;
 import modele.Chronologie;
 import modele.Evt;
 
+/**
+ * 
+ * Cette classe représente le renderer qui gère l'affichage de chaque cellule
+ * @author Vincent LIM Simon Ledoit
+ * @version 1.0
+ *
+ */
 public class RendererIcon extends DefaultTableCellRenderer{
 	
 	  private String chDossier;

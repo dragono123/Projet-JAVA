@@ -1,5 +1,11 @@
 package data;
 
+/**
+ * Classe permet de stocker les constantes du projet
+ * @author Vincent LIM Simon Ledoit
+ * @version 1.0
+ *
+ */
 public class Data {
 	public static String[] items = {"Création", "Affichage", "Quitter", "?"};
 	public static String[] titreElementsEvt = {"Titre", "Jour\\Mois\\An", "Nom de l'image", "Chronologie", "Description", "Poids"};

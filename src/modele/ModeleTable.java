@@ -5,12 +5,25 @@ import java.util.TreeMap;
 
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * Classe représentant le modèle de la frise
+ * @author Vincent LIM Simon Ledoit
+ * @version 1.0
+ *
+ */
 public class ModeleTable extends DefaultTableModel{
 	Chronologie chChronologie;
+	/**
+	 * Constructeur du modele
+	 * @param parChronologie correspond à la chronologie courante
+	 */
 	public ModeleTable(Chronologie parChronologie)
 	{
 		updateChronologie(parChronologie);
 	}
+	/**
+	 * Permet l'affichage de la frise à partir de la chronologie courante
+	 */
 	public void afficherFrise()
 	{
 		setRowCount(0);
@@ -57,11 +70,19 @@ public class ModeleTable extends DefaultTableModel{
 			setColumnIdentifiers(entete);
 		}
 	}
+	/**
+	 * 
+	 * Permet de changer la chronologie courante
+	 * @param parChronologie correspond à la nouvelle chronologie courante
+	 */
 	public void updateChronologie(Chronologie parChronologie)
 	{
 		chChronologie = parChronologie;
 		afficherFrise();
 	}
+	/**
+	 * Permet d'interdir l'écriture dans les cellules
+	 */
 	@Override
 	public boolean isCellEditable(int row, int column)
 	{
