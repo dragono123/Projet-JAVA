@@ -23,6 +23,12 @@ import vue.PanelFormulaire;
 import vue.PanelListeDescription;
 import vue.PanelListeEvts;
 
+/**
+ * Classe permettant de gérer la synchronisation vue/modele
+ * @author Vincent LIM Simon Ledoit
+ * @version 1.0
+ *
+ */
 public class Controleur implements ActionListener{
 	private PanelFormChrono chFormChrono;
 	private PanelFormEvt chFormEvt;
@@ -30,6 +36,12 @@ public class Controleur implements ActionListener{
 	private Historique chHistorique;
 	private PanelListeDescription chPanelDescription;
 	private PanelEvt chPanelEvt;
+	/**
+	 * Constructeur permettant de récupérer les panels et de permettre au Controleur de se mettre à l'écoute des boutons
+	 * @param parFormulaire représente le panel contenant tout les formulaires
+	 * @param parAffiche représente le panel contenant tout l'affichage
+	 * @param parHistorique représente la partie modele
+	 */
 	public Controleur(PanelFormulaire parFormulaire, PanelAffichage parAffiche, Historique parHistorique)
 	{
 		chFormChrono = parFormulaire.getPanelChrono();
@@ -42,7 +54,9 @@ public class Controleur implements ActionListener{
 		chPanelDescription.enregistreEcouteur(this);
 		chPanelEvt = parAffiche.getPanelEvt();
 	}
-	
+	/**
+	 * Permet la synchronisation Vue/modele
+	 */
 	public void actionPerformed(ActionEvent parEvt) 
 	{
 		if(parEvt.getActionCommand().equals(Data.commandAjoutChrono))
