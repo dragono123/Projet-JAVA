@@ -1,29 +1,16 @@
 package vue;
 
 
-import java.awt.Insets;
-import java.io.File;
-import java.io.IOException;
-
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
-import modele.Chronologie;
-import modele.Date;
-import modele.Evt;
-import modele.ExceptionChronologie;
-import modele.ExceptionDate;
-import modele.ExceptionEvt;
-import modele.Historique;
-
 import data.Data;
-import data.LectureEcriture;
 
 public class FenetreFrise extends JFrame {
 
-	public FenetreFrise(Historique historique)
+	public FenetreFrise()
 	{
 		super("Frise chronologique");
 		
@@ -42,7 +29,7 @@ public class FenetreFrise extends JFrame {
 		menuBar.add(items[Data.items.length - 1]);
 		
 		
-		PanelFrise contentPane = new PanelFrise(items, historique);
+		PanelFrise contentPane = new PanelFrise(items);
 		
 		setContentPane(contentPane);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -52,29 +39,6 @@ public class FenetreFrise extends JFrame {
 	}
 	public static void main(String args[])
 	{
-		Historique historique = new Historique();
-		File dossier = new File(Data.saveFile);
-		if(!dossier.exists())
-		{
-			try {
-				dossier.createNewFile();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
-		File[] listOfFiles = dossier.listFiles();
-		for(int i = 0; i < listOfFiles.length; i++)
-		{
-			if(listOfFiles[i].isFile())
-			{
-				try {
-					Chronologie chrono = (Chronologie) LectureEcriture.lecture(listOfFiles[i]);
-					historique.ajout(chrono);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		new FenetreFrise(historique);
+		new FenetreFrise();
 	}
 }

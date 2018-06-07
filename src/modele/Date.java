@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import data.Data;
+
 public class Date implements Comparable<Date>, Serializable
 {
 	private int chJour;
@@ -50,22 +52,7 @@ public class Date implements Comparable<Date>, Serializable
     }
     public String toString()
     {
-    	String mois[] = {"", "janvier", "fevrier", "mars", "avril", "mai", "juin", "juillet", "août", "septembre",
-    			"octobre", "novembre", "décembre"};
-    	String jour[] = {"", "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"};
-    	
-    	
-        return jour[chJourSemaine] + " " + chJour + " " + mois[chMois] + " " + chAn;
-    }
-    public int getNoSemaine()
-    {
-    	GregorianCalendar cal = new GregorianCalendar(chAn, chMois - 1, chJour);
-    	return cal.get(Calendar.WEEK_OF_YEAR);
-    }
-    
-    public int getJourSemaine()
-    {
-    	return chJourSemaine;
+        return Data.jour[chJourSemaine] + " " + chJour + " " + Data.mois[chMois] + " " + chAn;
     }
     
     public int dernierJour(int parMois, int parAn)
@@ -103,107 +90,6 @@ public class Date implements Comparable<Date>, Serializable
     	return chAn;
     }
     
-    public Date anSuiv()
-    {
-    	Date nouvelleDate = new Date(this);
-        nouvelleDate.chAn++;
-        return nouvelleDate;
-    }
-    
-    public Date jourLundi()
-    {
-    	Date nouvelleDate = new Date(this);
-    	while(nouvelleDate.getJourSemaine() != 2)
-    	{
-        	System.out.println(nouvelleDate.getJourSemaine());
-    		nouvelleDate = nouvelleDate.dateDeLaVeille();
-    	}
-    	return nouvelleDate;
-    }
-    
-    public Date moisSuiv()
-    {
-    	Date nouvelleDate = new Date(this);
-        if(nouvelleDate.chMois == 12)
-        {
-            nouvelleDate.chMois = 1;
-        	nouvelleDate.chAn++;
-        }
-        else
-            nouvelleDate.chMois += 1;
-        return nouvelleDate;
-    }
-    public Date anPrec()
-    {
-    	Date nouvelleDate = new Date(this);
-        if(nouvelleDate.chAn >= 1583)
-        	nouvelleDate.chAn--;
-        return nouvelleDate;
-    }
-    public Date moisPrec()
-    {
-    	Date nouvelleDate = new Date(this);
-        if(nouvelleDate.chMois == 1)
-        {
-            nouvelleDate.chMois = 12;
-        	nouvelleDate.chAn--;
-        }
-        else
-            nouvelleDate.chMois -= 1;
-        return nouvelleDate;
-    }
-    
-    public Date dateDuLendemain()
-    {
-        int jour = chJour, mois = chMois, an = chAn;
-        if(jour == dernierJour(mois, an))
-        {
-            jour = 1;
-            if(mois == 12)
-            {
-                mois = 1;
-                an += 1;
-            }
-            else
-                mois += 1;
-        }
-        else
-            jour += 1;
-        Date dateDuLendemain = null;
-        try {
-			dateDuLendemain = new Date(jour, mois, an);
-		} catch (ExceptionDate e) {
-			e.printStackTrace();
-		}
-        return dateDuLendemain;
-    }
-    public Date dateDeLaVeille()
-    {
-        Date nouvelleDate = null;
-        int jour = chJour, mois = chMois, an = chAn;
-        if(jour == 1)
-        {
-            if(mois == 1)
-            {
-            	mois = 12;
-                an -= 1;
-            }
-            else
-            	mois -= 1;
-            jour = dernierJour(mois, an);
-        }
-        else
-        {
-
-        	jour -= 1;
-        }
-        try {
-			nouvelleDate = new Date(jour, mois, an);
-		} catch (ExceptionDate e) {
-			e.printStackTrace();
-		}
-        return nouvelleDate;
-    }
     
     public int compareTo(Date parDate)
     {

@@ -12,4 +12,8 @@ public class Data {
 	public static String saveFile = "saves";
 	public static String imageRepository = "images";
 	public static int cellWidth = 55, cellHeight = 55;
+
+	public static String mois[] = {"", "janvier", "fevrier", "mars", "avril", "mai", "juin", "juillet", "août", "septembre",
+			"octobre", "novembre", "décembre"};
+	public static String jour[] = {"", "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"};
 }

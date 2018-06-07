@@ -1,10 +1,8 @@
 package modele;
 
 import java.io.Serializable;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 public class Chronologie implements Serializable{
 
@@ -51,11 +49,6 @@ public class Chronologie implements Serializable{
 	{
 		return chNom;
 	}
-	public void setNom(String parNom)
-	{
-		chNom = parNom;
-	}
-	
 	public int getAnDebut()
 	{
 		return chAnDebut;
@@ -67,10 +60,6 @@ public class Chronologie implements Serializable{
 	public String getDossier()
 	{
 		return chDossier;
-	}
-	public boolean containsKey(Integer key)
-	{
-		return chTreeMap.containsKey(key);
 	}
 	public TreeMap<Integer, TreeMap<Integer, Evt>> getEvtListe()
 	{

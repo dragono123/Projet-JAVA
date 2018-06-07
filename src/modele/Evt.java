@@ -44,22 +44,6 @@ public class Evt implements Comparable<Evt>, Serializable
     {
         return chDate;
     }
-    public void setNom(String parNom)
-    {
-       chNom = parNom; 
-    }
-    public void setDate(Date parDate)
-    {
-       chDate = parDate; 
-    }
-    public void setDescription(String parDescription)
-    {
-    	chDescription = parDescription; 
-    }
-    public void setFichier(String parFichier)
-    {
-    	chFichier = parFichier;
-    }
     public int compareTo(Evt parEvt)
     {
         int test = chDate.compareTo(parEvt.chDate);
